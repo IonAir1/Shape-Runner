@@ -1,17 +1,18 @@
 extends Node
 
 
-var state = 0
-var switch_to_b = false
-var switch_to_c = false
-var switch_to_a = false
-var switch_to_d = false
-var mutate = false
-var score = 0
-var bestscore = 0
-var first = true
-var new = false
-var dev = false
+var state = 0 #current game playing
+var switch_to_b = false #signal to switch to game b
+var switch_to_c = false #signal to switch to game c
+var switch_to_a = false #signal to switch to game a
+var switch_to_d = false #signal to switch to game d
+var mutate = false #is mutating
+var score = 0 #score
+var bestscore = 0 #highscore
+var first = true #first load
+var new = false # new player shape
+var dev = false #is testing
+var end = false #game end
 
 
 func _process(delta):

@@ -10,7 +10,7 @@ var jump = 0
 
 
 func _physics_process(delta):
-	jump_speed = -1300
+	jump_speed = -1300 #jump when obstacle detected
 	gravity = 4000
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)

@@ -11,7 +11,7 @@ func _ready():
 	scale = size
 
 func _physics_process(delta):
-	velocity.x = -1 * speed
+	velocity.x = -1 * speed #move
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if position.x < -100:
@@ -21,4 +21,4 @@ func _physics_process(delta):
 
 func _on_Area2D_area_entered(area):
 	if game == 1:
-		get_tree().change_scene("res://scenes/Main Menu.tscn")
+		Global.end = true

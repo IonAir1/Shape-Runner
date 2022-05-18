@@ -9,7 +9,7 @@ func _ready():
 	yield(get_tree().create_timer(1), "timeout")
 	spawn()
 
-func spawn():
+func spawn(): #spawns running obstacle in main menu
 	var e = running_obstacle.instance()
 	e.position = Vector2(1330, 600)
 	e.set_script(running_script)
