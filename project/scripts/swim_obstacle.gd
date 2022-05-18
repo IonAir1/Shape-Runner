@@ -30,8 +30,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if position.x < -400:
 		queue_free()
-	if Global.dev == 1 and Input.is_action_just_pressed("enter"):
+	if Global.dev and Input.is_action_just_pressed("enter"):
 		speed == 0
 
 func _on_Area2D_area_entered(area):
-	get_tree().change_scene("res://scenes-scripts/Main Menu.tscn")
+	get_tree().change_scene("res://scenes/Main Menu.tscn")

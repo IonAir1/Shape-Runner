@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/obstacle.png" type="Texture" id=1]
-[ext_resource path="res://scenes-scripts/swim_obstacle.gd" type="Script" id=2]
+[ext_resource path="res://scripts/swim_obstacle.gd" type="Script" id=2]
 
 [node name="swim_obstacle" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.35 )
@@ -176,4 +176,5 @@ texture = ExtResource( 1 )
 position = Vector2( 163.345, 510.291 )
 scale = Vector2( 0.0367789, 0.497914 )
 texture = ExtResource( 1 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

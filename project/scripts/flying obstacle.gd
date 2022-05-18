@@ -15,4 +15,4 @@ func _physics_process(delta):
 
 
 func _on_Area2D_area_entered(area):
-	get_tree().change_scene("res://scenes-scripts/Main Menu.tscn")
+	get_tree().change_scene("res://scenes/Main Menu.tscn")

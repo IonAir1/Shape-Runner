@@ -2,8 +2,8 @@ extends Node2D
 
 
 func _ready():
-	if Global.first == 1:
-		Global.first = 0
+	if Global.first:
+		Global.first = false
 	else:
 		get_node("lost").play()
 	if Global.score > Global.bestscore:
@@ -13,5 +13,5 @@ func _ready():
 
 
 func _on_play_pressed():
-	get_tree().change_scene("res://scenes-scripts/main.tscn")
+	get_tree().change_scene("res://scenes/main.tscn")
 

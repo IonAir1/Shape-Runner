@@ -1,11 +1,11 @@
 extends Node2D
 
-var running_obstacle = preload("res://scenes-scripts/runner obstacle.tscn")
-var running_script = preload("res://scenes-scripts/runner obstacle.gd")
-var flying_obstacle = preload("res://scenes-scripts/flying obstacle.tscn")
-var flying_script = preload("res://scenes-scripts/flying obstacle.gd")
-var swim_obstacle = preload("res://scenes-scripts/swim_obstacle.tscn")
-var swim_script = preload("res://scenes-scripts/swim_obstacle.gd")
+var running_obstacle = preload("res://scenes/runner obstacle.tscn")
+var running_script = preload("res://scripts/runner obstacle.gd")
+var flying_obstacle = preload("res://scenes/flying obstacle.tscn")
+var flying_script = preload("res://scripts/flying obstacle.gd")
+var swim_obstacle = preload("res://scenes/swim_obstacle.tscn")
+var swim_script = preload("res://scripts/swim_obstacle.gd")
 var water_rise = 0.1
 var velocity = 0
 var change = 0.3
@@ -77,7 +77,7 @@ func score():
 
 
 func mutate():
-	var wait = rand_range(8,15)
+	var wait = rand_range(5,10)
 	yield(get_tree().create_timer(wait), "timeout")
 	get_node("sounds/mutate").play()
 	get_node("obstacle").position = Vector2(624,393)
@@ -93,22 +93,22 @@ func mutate():
 	get_node("obstacle").position = Vector2(-1000,-1000)
 	yield(get_tree().create_timer(change), "timeout")
 	get_node("obstacle").position = Vector2(624,393)
-	Global.new = 1
+	Global.new = true
 	yield(get_tree().create_timer(change), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
-	Global.mutate = 1
+	Global.mutate = true
 	mutate()
 
 
 func _physics_process(delta):
 	if Global.state < 2:
 		get_node("water").position = Vector2(635, 1278)
-	if Global.switch_to_swim == 1:
-		Global.switch_to_swim = 0
+	if Global.switch_to_c:
+		Global.switch_to_c = false
 		velocity = 85
 	velocity = lerp(velocity, 0, water_rise)
-	if Global.switch_to_dive == 1:
-		Global.switch_to_dive = 0
+	if Global.switch_to_d:
+		Global.switch_to_d = false
 		velocity = 100
 	velocity = lerp(velocity, 0, water_rise)
 	if velocity > 0:

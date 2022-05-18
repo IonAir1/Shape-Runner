@@ -35,8 +35,8 @@ func _physics_process(delta):
 
 
 	elif Global.state == 1:
-		if Global.switch_to_flying == 1:
-			Global.switch_to_flying = 0
+		if Global.switch_to_b:
+			Global.switch_to_b = false
 			if is_on_floor():
 				velocity.y = -1500
 		var dir = 0
@@ -94,8 +94,8 @@ func _physics_process(delta):
 		get_node("sprite").texture = fly
 
 
-	if Global.new == 1:
-		Global.new = 0
+	if Global.new:
+		Global.new = false
 		pop()
 
 func pop():

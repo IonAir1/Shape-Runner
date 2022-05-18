@@ -1,8 +1,8 @@
 extends Node2D
 
 
-var running_obstacle = preload("res://scenes-scripts/runner obstacle.tscn")
-var running_script = preload("res://scenes-scripts/runner obstacle.gd")
+var running_obstacle = preload("res://scenes/runner obstacle.tscn")
+var running_script = preload("res://scripts/runner obstacle.gd")
 
 
 func _ready():
