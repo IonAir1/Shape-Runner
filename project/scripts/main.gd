@@ -119,3 +119,14 @@ func _physics_process(delta):
 	if Global.end:
 		Global.end = false
 		get_tree().change_scene("res://scenes/Main Menu.tscn")
+
+
+func _on_touch_pressed():
+		if get_global_mouse_position().y < (OS.get_window_size().y/2):
+			$Player.touch = 1
+		else:
+			$Player.touch = -1
+
+
+func _on_touch_released():
+	$Player.touch = 0

@@ -10,7 +10,7 @@ var swim_jump = false #timer for disabling jumping when game C
 var run = preload("res://assets/runner.png")
 var fly = preload("res://assets/flyer.png")
 var swim = preload("res://assets/swimmer.png")
-
+var touch = 0
 
 func _ready():
 	get_node("circle").scale = Vector2.ZERO
@@ -21,13 +21,12 @@ func swimwait():#timer for game C, jumping
 	swim_jump = false
 
 func _physics_process(delta):
-
 	if Global.state == 0: #player properties for Game A
 		jump_speed = -1300
 		gravity = 4000
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
-		if Input.is_action_just_pressed("w"):
+		if Input.is_action_pressed("w") or touch != 0:
 			if is_on_floor():
 				velocity.y = jump_speed
 				get_parent().get_node("sounds/jump").play()
@@ -40,9 +39,9 @@ func _physics_process(delta):
 			if is_on_floor():
 				velocity.y = -1500
 		var dir = 0
-		if Input.is_action_pressed("s"):
+		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
-		if Input.is_action_pressed("w"):
+		if Input.is_action_pressed("w") or touch == 1:
 			dir -= 1
 		if dir != 0:
 			velocity.y = lerp(velocity.y, dir * speed, acceleration)
@@ -64,13 +63,13 @@ func _physics_process(delta):
 			velocity.y -= gravity * delta
 		elif position.y == 400:
 			velocity.y = 0
-		if Input.is_action_pressed("w"):
+		if Input.is_action_pressed("w") or touch == 1:
 			if position.y == 400 and not swim_jump:
 				velocity.y = jump_speed
 				swim_jump = true
 				swimwait()
 				get_parent().get_node("sounds/jump").play()
-		if Input.is_action_pressed("s"):
+		if Input.is_action_pressed("s") or touch == -1:
 			if position.y == 400 and not swim_jump:
 				velocity.y = jump_speed * -1
 				swim_jump = true
@@ -82,9 +81,9 @@ func _physics_process(delta):
 	
 	elif Global.state == 3: #player properties for Game D
 		var dir = 0
-		if Input.is_action_pressed("s"):
+		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
-		if Input.is_action_pressed("w"):
+		if Input.is_action_pressed("w") or touch == 1:
 			dir -= 1
 		if dir != 0:
 			velocity.y = lerp(velocity.y, dir * speed, acceleration)
@@ -121,3 +120,4 @@ func pop(): #transition animation
 	get_node("circle").scale += Vector2(0.1, 0.1)
 	yield(get_tree().create_timer(change), "timeout")
 	get_node("circle").scale = Vector2.ZERO
+
