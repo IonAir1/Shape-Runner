@@ -16,7 +16,7 @@ func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
 		position.x = (get_viewport_rect().size.x - (get_node("ground/ground").texture.get_size().x*5.33333))
 		position.y = (get_viewport_rect().size.y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
-		$score.set_global_position(Vector2(50, 50))
+		$score.set_global_position(Vector2(70, 70))
 	vprect = get_viewport_rect().size
 
 
@@ -132,7 +132,7 @@ func _physics_process(delta):
 
 
 func _on_touch_pressed():
-		if get_global_mouse_position().y < (OS.get_window_size().y/2):
+		if get_global_mouse_position().y < (get_viewport_rect().size.y / 2):
 			$Player.touch = 1
 		else:
 			$Player.touch = -1
