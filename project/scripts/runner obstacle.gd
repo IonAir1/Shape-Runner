@@ -14,7 +14,7 @@ func _physics_process(delta):
 	velocity.x = -1 * speed #move
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-	if position.x < -100:
+	if global_position.x < -100:
 		queue_free()
 
 
