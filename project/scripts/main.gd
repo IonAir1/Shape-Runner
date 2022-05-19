@@ -9,11 +9,21 @@ var swim_script = preload("res://scripts/swim_obstacle.gd")
 var water_rise = 0.1 #speed of water rising
 var velocity = 0 #velocity
 var change = 0.3 #speed of transition
+var vprect = Vector2()
+
+
+func _process(delta):
+	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
+		position.x = (get_viewport_rect().size.x - (get_node("ground/ground").texture.get_size().x*5.33333))
+		position.y = (get_viewport_rect().size.y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
+		$score.set_global_position(Vector2(50, 50))
+	vprect = get_viewport_rect().size
+
 
 func obstacle_spawn(): #spawns obstacles
 	if Global.state == 0: #spawns game A obstacle
 		var e = running_obstacle.instance()
-		e.position = Vector2(1330, 600)
+		e.position = Vector2(1330, 692)
 		e.set_script(running_script)
 		var a = Vector2(rand_range(0.2, 0.6), rand_range(0.2, 0.6))
 		e.size = a.normalized()
@@ -25,7 +35,7 @@ func obstacle_spawn(): #spawns obstacles
 		
 	elif Global.state == 1: #spawns game B obstacle
 		var e = flying_obstacle.instance()
-		e.position = Vector2(1400, rand_range(112, 530))
+		e.position = Vector2(1400, rand_range(112, 608))
 		e.set_script(flying_script)
 		add_child(e)
 		var wait = rand_range(1, 2.3)
@@ -36,11 +46,11 @@ func obstacle_spawn(): #spawns obstacles
 		var e = swim_obstacle.instance()
 		var a = randi()%3
 		if a == 0:
-			e.position = Vector2(1400,320)
+			e.position = Vector2(1600,320)
 		if a == 1:
-			e.position = Vector2(1400,400)
+			e.position = Vector2(1600,400)
 		if a == 2:
-			e.position = Vector2(1400,515)
+			e.position = Vector2(1600,515)
 		e.set_script(swim_script)
 		e.a = a
 		add_child(e)
@@ -50,7 +60,7 @@ func obstacle_spawn(): #spawns obstacles
 
 	if Global.state == 3: #spawns game D obstacle
 		var e = running_obstacle.instance()
-		e.position = Vector2(1326, rand_range(20, 600))
+		e.position = Vector2(1326, rand_range(20, 700))
 		e.set_script(flying_script)
 		add_child(e)
 		var wait = rand_range(0.2, 0.4)

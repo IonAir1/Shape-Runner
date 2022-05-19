@@ -21,6 +21,11 @@ func swimwait():#timer for game C, jumping
 	swim_jump = false
 
 func _physics_process(delta):
+	var ceiling_height = get_parent().get_node("ground/ceiling/ceiling_pos").global_position.y + 25
+	if global_position.y <= ceiling_height:
+		global_position.y = ceiling_height
+
+
 	if Global.state == 0: #player properties for Game A
 		jump_speed = -1300
 		gravity = 4000
@@ -41,7 +46,7 @@ func _physics_process(delta):
 		var dir = 0
 		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
-		if Input.is_action_pressed("w") or touch == 1:
+		if (Input.is_action_pressed("w") or touch == 1) and global_position.y > ceiling_height:
 			dir -= 1
 		if dir != 0:
 			velocity.y = lerp(velocity.y, dir * speed, acceleration)
@@ -83,7 +88,7 @@ func _physics_process(delta):
 		var dir = 0
 		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
-		if Input.is_action_pressed("w") or touch == 1:
+		if (Input.is_action_pressed("w") or touch == 1) and global_position.y > ceiling_height:
 			dir -= 1
 		if dir != 0:
 			velocity.y = lerp(velocity.y, dir * speed, acceleration)

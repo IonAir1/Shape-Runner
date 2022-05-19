@@ -28,7 +28,7 @@ func _ready():
 func _physics_process(delta):
 	velocity.x = -1 * speed #move
 	velocity = move_and_slide(velocity, Vector2.UP)
-	if position.x < -400:
+	if global_position.x < -400:
 		queue_free()
 	if Global.dev and Input.is_action_just_pressed("enter"):
 		speed == 0

@@ -58,12 +58,12 @@ position = Vector2( -0.763205, -0.0514048 )
 shape = SubResource( 1 )
 
 [node name="cieling" type="Sprite" parent="background/ground"]
-position = Vector2( 3.17025, -275.973 )
+position = Vector2( 3.17, -275.603 )
 scale = Vector2( 1.01162, 0.924828 )
 texture = ExtResource( 9 )
 
 [node name="player" type="KinematicBody2D" parent="background"]
-position = Vector2( 117.468, 692.513 )
+position = Vector2( 152.962, 692.513 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -86,7 +86,7 @@ shape = SubResource( 3 )
 stream = ExtResource( 3 )
 
 [node name="watermark" type="Sprite" parent="background"]
-visible = false
+self_modulate = Color( 1, 1, 1, 0.0823529 )
 position = Vector2( 1125, 680 )
 scale = Vector2( 0.3, 0.3 )
 z_index = 22
