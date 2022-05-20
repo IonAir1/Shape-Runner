@@ -15,6 +15,14 @@ func _ready():
 	get_node("Center/UI/VBoxContainer/score").text = "SCORE      " + str(Global.score)
 	get_node("Center/UI/VBoxContainer/best").text = "BEST SCORE      " + str(Global.bestscore)
 
+
 func _on_play_pressed(): #play
 	get_tree().change_scene("res://scenes/main.tscn")
 
+
+func _on_settings_pressed():
+	pass # Replace with function body.
+
+
+func _on_credits_pressed():
+	pass # Replace with function body.
