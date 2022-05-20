@@ -4,13 +4,16 @@ var running_obstacle = preload("res://scenes/runner obstacle.tscn")
 var running_script = preload("res://scripts/runner obstacle.gd")
 var flying_obstacle = preload("res://scenes/flying obstacle.tscn")
 var flying_script = preload("res://scripts/flying obstacle.gd")
-var swim_obstacle = preload("res://scenes/swim_obstacle.tscn")
-var swim_script = preload("res://scripts/swim_obstacle.gd")
+var swim_obstacle = preload("res://scenes/swim obstacle.tscn")
+var swim_script = preload("res://scripts/swim obstacle.gd")
+var bounce_obstacle = preload("res://scenes/bouncing obstacle.tscn")
+var bounce_script = preload("res://scripts/bouncing obstacle.gd")
 var water_rise = 0.1 #speed of water rising
 var velocity = 0 #velocity
 var change = 0.3 #speed of transition
 var vprect = Vector2()
-
+var waterlower
+var waterrepos = false
 
 func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
@@ -67,13 +70,24 @@ func obstacle_spawn(): #spawns obstacles
 		yield(get_tree().create_timer(wait), "timeout")
 
 
+	if Global.state == 4:
+		var e = bounce_obstacle.instance()
+		var height = rand_range(300, 600)
+		e.position = Vector2(1330, height)
+		e.set_script(bounce_script)
+		e.size = rand_range(3, 15) / 10
+		e.bounciness = rand_range(6, 15)
+		add_child(e)
+		var wait = rand_range(1, 2.8)
+		yield(get_tree().create_timer(wait), "timeout")
+
 	obstacle_spawn()
 
 
 func _ready():
 	randomize()
 	Global.score = 0
-	Global.state = 0
+	Global.state = 4
 	yield(get_tree().create_timer(1), "timeout")
 	obstacle_spawn()
 	mutate()
@@ -87,7 +101,7 @@ func score(): #adds score
 
 
 func mutate(): #mutates/changes game
-	var wait = rand_range(5,10)
+	var wait = rand_range(5,12)
 	yield(get_tree().create_timer(wait), "timeout")
 	get_node("sounds/mutate").play()
 	get_node("obstacle").position = Vector2(624,393)
@@ -111,8 +125,8 @@ func mutate(): #mutates/changes game
 
 
 func _physics_process(delta):
-	if Global.state < 2: #code for water rising and lowering
-		get_node("water").position = Vector2(635, 1278)
+	#if Global.state != 2 and Global.state != 3: #code for water rising and lowering
+	#	get_node("water").position = Vector2(635, 1278)
 	if Global.switch_to_c:
 		Global.switch_to_c = false
 		velocity = 85
@@ -121,8 +135,19 @@ func _physics_process(delta):
 		Global.switch_to_d = false
 		velocity = 100
 	velocity = lerp(velocity, 0, water_rise)
-	if velocity > 0:
+	if Global.switch_to_e == true:
+		Global.switch_to_e = false
+		velocity = -185
+		waterlower = get_tree().create_timer(3)
+		waterrepos = true
+		
+
+	if velocity != 0:
 		get_node("water").position -= Vector2(0, velocity)
+	elif Global.state == 4 and waterrepos == true:
+		if  waterlower.time_left <= 0:
+			waterrepos = false
+			get_node("water").position = Vector2(635, 1278)
 
 
 	get_node("score/Score").text = str(Global.score)

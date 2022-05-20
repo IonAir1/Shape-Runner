@@ -98,6 +98,18 @@ func _physics_process(delta):
 		get_node("sprite").texture = fly
 
 
+	if Global.state == 4: #player properties for Game E
+		jump_speed = -1800
+		gravity = 3000
+		velocity.y += gravity * delta
+		velocity = move_and_slide(velocity, Vector2.UP)
+		if Input.is_action_pressed("w") or touch != 0:
+			if is_on_floor():
+				velocity.y = jump_speed
+				get_parent().get_node("sounds/jump").play()
+		get_node("sprite").texture = run
+
+
 	if Global.new: #transition
 		Global.new = false
 		pop()

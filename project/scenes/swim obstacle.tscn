@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/obstacle.png" type="Texture" id=1]
-[ext_resource path="res://scripts/swim_obstacle.gd" type="Script" id=2]
+[ext_resource path="res://scripts/swim obstacle.gd" type="Script" id=1]
+[ext_resource path="res://assets/obstacle.png" type="Texture" id=2]
 
 [node name="swim_obstacle" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.35 )
 collision_layer = 16
 collision_mask = 2
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="Bottom2" type="CollisionPolygon2D" parent="."]
 position = Vector2( -740.897, -498.468 )
@@ -43,60 +43,60 @@ __meta__ = {
 [node name="bottom" type="Sprite" parent="Area2D/Bottom"]
 position = Vector2( 750.264, 516.65 )
 scale = Vector2( 1.08056, 0.423413 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle6" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -21.548, -191.838 )
 scale = Vector2( 0.780977, 1 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle7" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -130.102, -550.708 )
 scale = Vector2( 0.256325, 0.497914 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle9" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -111.274, 403.648 )
 scale = Vector2( 0.498731, 0.497914 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle10" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( 251.648, 549.453 )
 scale = Vector2( 0.192435, 0.744543 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle14" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -56.9503, 1043.06 )
 scale = Vector2( 0.0593872, 0.196494 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle11" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -111.274, 781.041 )
 scale = Vector2( 0.370951, 0.779088 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle8" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( 143.922, -691.884 )
 scale = Vector2( 0.0367789, 0.497914 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle3" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -311.235, 155.719 )
 rotation = 5.93412
 scale = Vector2( 0.28765, 0.495411 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle12" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( -330.052, -142.201 )
 rotation = 3.31613
 scale = Vector2( 0.28765, 0.564244 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle13" type="Sprite" parent="Area2D/Bottom/bottom"]
 position = Vector2( 310.758, -49.1296 )
 rotation = 0.785398
 scale = Vector2( 0.515899, 0.479683 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="Top" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( 0, 195.95 )
@@ -109,49 +109,49 @@ __meta__ = {
 [node name="top" type="Sprite" parent="Area2D/Top"]
 position = Vector2( -0.00694275, -60.3939 )
 scale = Vector2( 1, 0.346702 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( -330.396, 29.8985 )
 rotation = 1.33264
 scale = Vector2( 0.834756, 0.387114 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle3" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( 338.811, 12.648 )
 rotation = 1.90453
 scale = Vector2( 0.835777, 0.491365 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle2" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( -385.627, -245.026 )
 scale = Vector2( 0.224489, 0.330808 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle4" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( 425.841, -255.408 )
 scale = Vector2( 0.239304, 0.420963 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle5" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( 23.1711, -724.819 )
 scale = Vector2( 0.610628, 1.18993 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle7" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( 87.786, -1100 )
 scale = Vector2( 0.204068, 0.55498 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle8" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( 6.00415, 303.145 )
 scale = Vector2( 1.15486, 0.118446 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle6" type="Sprite" parent="Area2D/Top/top"]
 position = Vector2( -345.319, -1127.58 )
 scale = Vector2( 0.0753245, 2.46287 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="Middle" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( -1051.12, -410.838 )
@@ -163,7 +163,7 @@ __meta__ = {
 [node name="middle" type="Sprite" parent="Area2D/Middle"]
 position = Vector2( 1036.85, 399.145 )
 scale = Vector2( 1.08056, 0.346773 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -171,15 +171,15 @@ __meta__ = {
 [node name="obstacle6" type="Sprite" parent="Area2D/Middle/middle"]
 position = Vector2( 9.61519, -191.838 )
 scale = Vector2( 0.69078, 1 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle7" type="Sprite" parent="Area2D/Middle/middle"]
 position = Vector2( -76.9182, 345.746 )
 scale = Vector2( 0.256325, 0.497914 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="obstacle8" type="Sprite" parent="Area2D/Middle/middle"]
 position = Vector2( 163.345, 510.291 )
 scale = Vector2( 0.0367789, 0.497914 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
