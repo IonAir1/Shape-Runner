@@ -14,7 +14,22 @@ var first = true #first load
 var new = false # new player shape
 var dev = false #is testing
 var end = false #game end
+var score_file = "user://score.save"
 
+func load_score():
+	var file = File.new()
+	if file.file_exists(score_file):
+		file.open(score_file, File.READ)
+		bestscore = file.get_var()
+		file.close()
+	else:
+		bestscore = 0
+
+func save_score():
+	var file = File.new()
+	file.open(score_file, File.WRITE)
+	file.store_var(bestscore)
+	file.close()
 
 func _process(delta):
 	if mutate:

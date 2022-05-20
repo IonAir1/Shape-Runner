@@ -87,7 +87,7 @@ func obstacle_spawn(): #spawns obstacles
 func _ready():
 	randomize()
 	Global.score = 0
-	Global.state = 4
+	Global.state = 0
 	yield(get_tree().create_timer(1), "timeout")
 	obstacle_spawn()
 	mutate()
