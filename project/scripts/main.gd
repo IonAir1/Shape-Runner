@@ -14,6 +14,9 @@ var change = 0.3 #speed of transition
 var vprect = Vector2()
 var waterlower
 var waterrepos = false
+var wait = 1
+var mutate = Vector2(5, 10)
+var startingstate = 0
 
 func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
@@ -31,20 +34,19 @@ func obstacle_spawn(): #spawns obstacles
 		var a = Vector2(rand_range(0.2, 0.6), rand_range(0.2, 0.6))
 		e.size = a.normalized()
 		e.game = 1
+		e.gravitydir = -1
 		add_child(e)
-		var wait = rand_range(0.8, 3)
-		yield(get_tree().create_timer(wait), "timeout")
-		
-		
+		wait = rand_range(0.8, 3)
+
+
 	elif Global.state == 1: #spawns game B obstacle
 		var e = flying_obstacle.instance()
 		e.position = Vector2(1400, rand_range(112, 608))
 		e.set_script(flying_script)
 		add_child(e)
-		var wait = rand_range(1, 2.3)
-		yield(get_tree().create_timer(wait), "timeout")
-	
-	
+		wait = rand_range(1, 2.3)
+
+
 	elif Global.state == 2: #spawns game C obstacle
 		var e = swim_obstacle.instance()
 		var a = randi()%3
@@ -57,8 +59,8 @@ func obstacle_spawn(): #spawns obstacles
 		e.set_script(swim_script)
 		e.a = a
 		add_child(e)
-		var wait = rand_range(1.3, 3)
-		yield(get_tree().create_timer(wait), "timeout")
+		wait = rand_range(1.3, 3)
+
 
 
 	if Global.state == 3: #spawns game D obstacle
@@ -67,7 +69,6 @@ func obstacle_spawn(): #spawns obstacles
 		e.set_script(flying_script)
 		add_child(e)
 		var wait = rand_range(0.2, 0.4)
-		yield(get_tree().create_timer(wait), "timeout")
 
 
 	if Global.state == 4:
@@ -79,15 +80,33 @@ func obstacle_spawn(): #spawns obstacles
 		e.bounciness = rand_range(6, 15)
 		add_child(e)
 		var wait = rand_range(1, 2.8)
-		yield(get_tree().create_timer(wait), "timeout")
 
+
+	if Global.state == 5:
+		var e = running_obstacle.instance()
+		var gravitydir = (randi()%3) - 1
+		if gravitydir != 0:
+			e.set_script(running_script)
+			if gravitydir < 0:
+				e.position = Vector2(1330, 693)
+				e.gravitydir = -1
+			else:
+				e.position = Vector2(1330, 20)
+				e.gravitydir = 1
+			e.size = Vector2(0.6, 0.6)
+			e.game = 1
+			add_child(e)
+			wait = rand_range(0.2, 1)
+
+
+	yield(get_tree().create_timer(wait), "timeout")
 	obstacle_spawn()
 
 
 func _ready():
 	randomize()
 	Global.score = 0
-	Global.state = 0
+	Global.state = startingstate
 	yield(get_tree().create_timer(1), "timeout")
 	obstacle_spawn()
 	mutate()
@@ -101,7 +120,7 @@ func score(): #adds score
 
 
 func mutate(): #mutates/changes game
-	var wait = rand_range(5,12)
+	var wait = rand_range(mutate.x, mutate.y)
 	yield(get_tree().create_timer(wait), "timeout")
 	get_node("sounds/mutate").play()
 	get_node("obstacle").position = Vector2(624,393)

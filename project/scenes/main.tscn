@@ -48,6 +48,10 @@ texture = ExtResource( 2 )
 position = Vector2( 0, 0.017 )
 shape = SubResource( 1 )
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ground"]
+position = Vector2( 5.2, -152.823 )
+shape = SubResource( 1 )
+
 [node name="ceiling" type="Sprite" parent="ground"]
 position = Vector2( 94, -203.603 )
 scale = Vector2( 8.34417, 1 )
@@ -98,5 +102,8 @@ modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -3528, -2108 )
 scale = Vector2( 100, 100 )
 normal = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="pressed" from="touch" to="." method="_on_touch_pressed"]
 [connection signal="released" from="touch" to="." method="_on_touch_released"]

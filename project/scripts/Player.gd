@@ -11,6 +11,7 @@ var run = preload("res://assets/runner.png")
 var fly = preload("res://assets/flyer.png")
 var swim = preload("res://assets/swimmer.png")
 var touch = 0
+var gravitydir = -1
 
 func _ready():
 	get_node("circle").scale = Vector2.ZERO
@@ -38,7 +39,7 @@ func _physics_process(delta):
 		get_node("sprite").texture = run
 
 
-	elif Global.state == 1: #player properties for Game B
+	elif Global.state == 1 or Global.state == 3: #player properties for Game B,D
 		if Global.switch_to_b:
 			Global.switch_to_b = false
 			if is_on_floor():
@@ -82,20 +83,6 @@ func _physics_process(delta):
 				get_parent().get_node("sounds/dive").play()
 		velocity = move_and_slide(velocity, Vector2.UP)
 		get_node("sprite").texture = swim
-	
-	
-	elif Global.state == 3: #player properties for Game D
-		var dir = 0
-		if Input.is_action_pressed("s") or touch == -1:
-			dir += 1
-		if (Input.is_action_pressed("w") or touch == 1) and global_position.y > ceiling_height:
-			dir -= 1
-		if dir != 0:
-			velocity.y = lerp(velocity.y, dir * speed, acceleration)
-		else:
-			velocity.y = lerp(velocity.y, 0, friction)
-		velocity = move_and_slide(velocity, Vector2.UP)
-		get_node("sprite").texture = fly
 
 
 	if Global.state == 4: #player properties for Game E
@@ -105,6 +92,23 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity, Vector2.UP)
 		if Input.is_action_pressed("w") or touch != 0:
 			if is_on_floor():
+				velocity.y = jump_speed
+				get_parent().get_node("sounds/jump").play()
+		get_node("sprite").texture = run
+
+
+	if Global.state == 5: #player properties for Game E
+		if position.y < 360:
+			gravitydir = 1
+		else:
+			gravitydir = -1
+		jump_speed = 4500 * (gravitydir)
+		gravity = 10000 * (gravitydir*-1)
+		velocity.y += gravity * delta
+		velocity = move_and_slide(velocity, Vector2.UP)
+		if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s") or touch != 0:
+			touch = 0
+			if is_on_floor() or is_on_ceiling():
 				velocity.y = jump_speed
 				get_parent().get_node("sounds/jump").play()
 		get_node("sprite").texture = run
