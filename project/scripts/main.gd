@@ -9,14 +9,14 @@ var swim_script = preload("res://scripts/swim obstacle.gd")
 var bounce_obstacle = preload("res://scenes/bouncing obstacle.tscn")
 var bounce_script = preload("res://scripts/bouncing obstacle.gd")
 var water_rise = 0.1 #speed of water rising
-var velocity = 0 #velocity
+var velocity = 0 #water velocity
 var change = 0.3 #speed of transition
 var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
 var mutate = Vector2(5, 10)
-var startingstate = 0
+var startingstate = 5
 
 func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
@@ -68,7 +68,7 @@ func obstacle_spawn(): #spawns obstacles
 		e.position = Vector2(1326, rand_range(20, 700))
 		e.set_script(flying_script)
 		add_child(e)
-		var wait = rand_range(0.2, 0.4)
+		wait = rand_range(0.2, 0.4)
 
 
 	if Global.state == 4:
@@ -79,7 +79,7 @@ func obstacle_spawn(): #spawns obstacles
 		e.size = rand_range(3, 15) / 10
 		e.bounciness = rand_range(6, 15)
 		add_child(e)
-		var wait = rand_range(1, 2.8)
+		wait = rand_range(0.6, 2.8)
 
 
 	if Global.state == 5:
