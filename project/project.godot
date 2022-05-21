@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="D Jam # 5"
+config/name="Shape Runner"
 run/main_scene="res://scenes/Main Menu.tscn"
 boot_splash/image="res://assets/splash screen.png"
 config/icon="res://icon.png"
