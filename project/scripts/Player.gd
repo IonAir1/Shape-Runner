@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var speed = 500 #player speed
+var vertical_speed = 800 #vertical player speed
 var jump_speed = -1300 #jump speed
 var gravity = 4000 #gravity
-var friction = 0.1 #running friction
+var friction = 0.2 #running friction
 var acceleration = 0.25 #running acceleration
 var velocity = Vector2.ZERO #velocity
 var swim_jump = false #timer for disabling jumping when game C
@@ -39,18 +39,21 @@ func _physics_process(delta):
 		get_node("sprite").texture = run
 
 
-	elif Global.state == 1 or Global.state == 3: #player properties for Game B,D
-		if Global.switch_to_b:
+	elif Global.state == 1 or Global.state == 3 or Global.state == 6: #player properties for Game B,D.G
+		if Global.switch_to_b or Global.switch_to_g:
+			Global.switch_to_g = false
 			Global.switch_to_b = false
 			if is_on_floor():
 				velocity.y = -1500
+			elif is_on_ceiling():
+				velocity.y = 1500
 		var dir = 0
 		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
 		if (Input.is_action_pressed("w") or touch == 1) and global_position.y > ceiling_height:
 			dir -= 1
 		if dir != 0:
-			velocity.y = lerp(velocity.y, dir * speed, acceleration)
+			velocity.y = lerp(velocity.y, dir * vertical_speed, acceleration)
 		else:
 			velocity.y = lerp(velocity.y, 0, friction)
 		velocity = move_and_slide(velocity, Vector2.UP)

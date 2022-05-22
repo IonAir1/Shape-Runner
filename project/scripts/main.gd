@@ -15,8 +15,8 @@ var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
-var mutate = Vector2(5, 10)
-var startingstate = 5
+var mutate = Vector2(5, 12)
+var startingstate = 0
 
 func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
@@ -96,7 +96,16 @@ func obstacle_spawn(): #spawns obstacles
 			e.size = Vector2(0.6, 0.6)
 			e.game = 1
 			add_child(e)
-			wait = rand_range(0.2, 1)
+		wait = rand_range(0.2, 1)
+
+
+
+	if Global.state == 6:
+		var e = running_obstacle.instance()
+		e.position = Vector2(1400, rand_range(0, 720))
+		e.set_script(flying_script)
+		add_child(e)
+		wait = rand_range(0.4, 1)
 
 
 	yield(get_tree().create_timer(wait), "timeout")

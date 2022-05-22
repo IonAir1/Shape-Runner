@@ -8,6 +8,7 @@ var switch_to_a = false #signal to switch to game a
 var switch_to_d = false #signal to switch to game d
 var switch_to_e = false #signal to switch to game e
 var switch_to_f = false #signal to switch to game f
+var switch_to_g = false #signal to switch to game g
 var mutate = false #is mutating
 var score = 0 #score
 var bestscore = 0 #highscore
@@ -36,6 +37,8 @@ func _process(delta):
 	if mutate:
 		mutate = false
 		state += 1
+		if state == 6:
+			switch_to_g = true
 		if state == 5:
 			switch_to_f = true
 		if state == 4:
@@ -48,5 +51,5 @@ func _process(delta):
 			switch_to_c = true
 		if state == 0:
 			switch_to_a = true
-	if state > 5:
+	if state > 6:
 		state = 0
