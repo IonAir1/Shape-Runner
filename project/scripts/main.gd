@@ -15,8 +15,8 @@ var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
-var mutate = Vector2(5, 12)
-var startingstate = 0
+var mutate = Vector2(3, 4)
+var startingstate = 5
 
 func _process(delta):
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:

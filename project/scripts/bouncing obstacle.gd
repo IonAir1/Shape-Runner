@@ -12,7 +12,12 @@ func _ready():
 func _physics_process(delta):
 	position.x -= speed
 	
-	if Global.state != 4:
+	if Global.state == 5:
+		$Area2D.scale.x -= 0.1
+		$Area2D.scale.y -= 0.1
+		$CollisionShape2D.scale.x -= 0.1
+		$CollisionShape2D.scale.y -= 0.1
+	if $Area2D.scale.x < 0.1:
 		queue_free()
 	
 	if global_position.x < -100:

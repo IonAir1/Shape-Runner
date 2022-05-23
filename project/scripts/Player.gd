@@ -44,9 +44,9 @@ func _physics_process(delta):
 			Global.switch_to_g = false
 			Global.switch_to_b = false
 			if is_on_floor():
-				velocity.y = -1500
+				velocity.y = -1800
 			elif is_on_ceiling():
-				velocity.y = 1500
+				velocity.y = 1800
 		var dir = 0
 		if Input.is_action_pressed("s") or touch == -1:
 			dir += 1
