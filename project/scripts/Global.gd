@@ -16,7 +16,8 @@ var first = true #first load
 var new = false # new player shape
 var dev = false #is testing
 var end = false #game end
-var score_file = "user://score.save"
+var score_file = "user://score.save" #score save file
+var guide = true #show guide
 
 func load_score():
 	var file = File.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ground.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/dive.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/watermark.png" type="Texture" id=10]
 [ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://assets/button.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 680.801, 69.22 )
@@ -62,8 +63,8 @@ position = Vector2( -6.136, 120 )
 
 [node name="water" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.388235 )
-position = Vector2( -947, 1278.46 )
-scale = Vector2( 35.9389, 8.77052 )
+position = Vector2( -947, 1600 )
+scale = Vector2( 35.9389, 14.3044 )
 z_index = 10
 texture = ExtResource( 4 )
 
@@ -105,5 +106,27 @@ normal = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="buttons" type="Node2D" parent="."]
+z_index = -1
+
+[node name="1" type="Sprite" parent="buttons"]
+self_modulate = Color( 1, 1, 1, 0.188235 )
+position = Vector2( 1000, 360 )
+scale = Vector2( 0.66, 0.66 )
+texture = ExtResource( 12 )
+
+[node name="2" type="Sprite" parent="buttons"]
+self_modulate = Color( 1, 1, 1, 0.188235 )
+position = Vector2( 1000, 240 )
+scale = Vector2( 0.42, 0.42 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="buttons/2"]
+self_modulate = Color( 1, 1, 1, 0.188235 )
+position = Vector2( 0, 571.429 )
+rotation = -3.14159
+scale = Vector2( 1, 1 )
+texture = ExtResource( 12 )
 [connection signal="pressed" from="touch" to="." method="_on_touch_pressed"]
 [connection signal="released" from="touch" to="." method="_on_touch_released"]

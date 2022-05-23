@@ -15,10 +15,20 @@ var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
-var mutate = Vector2(3, 4)
+var mutate = Vector2(5, 12)
 var startingstate = 0
+var twobuttons = [1, 2, 3, 6]
 
 func _process(delta):
+	if Global.guide == true:
+		if twobuttons.find(Global.state) != -1:
+			get_node("buttons/1").visible = false
+			get_node("buttons/2").visible = true
+		else:
+			get_node("buttons/1").visible = true
+			get_node("buttons/2").visible = false
+
+
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
 		position.x = (get_viewport_rect().size.x - (get_node("ground/ground").texture.get_size().x*5.33333))
 		position.y = (get_viewport_rect().size.y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
@@ -79,7 +89,7 @@ func obstacle_spawn(): #spawns obstacles
 		e.size = rand_range(3, 15) / 10
 		e.bounciness = rand_range(6, 15)
 		add_child(e)
-		wait = rand_range(0.6, 2.8)
+		wait = rand_range(1, 2.8)
 
 
 	if Global.state == 5:
@@ -153,9 +163,7 @@ func mutate(): #mutates/changes game
 
 
 func _physics_process(delta):
-	#if Global.state != 2 and Global.state != 3: #code for water rising and lowering
-	#	get_node("water").position = Vector2(635, 1278)
-	if Global.switch_to_c:
+	if Global.switch_to_c: #code for water rising and lowering
 		Global.switch_to_c = false
 		velocity = 85
 	velocity = lerp(velocity, 0, water_rise)
@@ -168,7 +176,9 @@ func _physics_process(delta):
 		velocity = -185
 		waterlower = get_tree().create_timer(3)
 		waterrepos = true
-		
+	if Global.state == 0:
+		$water.position.y = 1600
+	
 
 	if velocity != 0:
 		get_node("water").position -= Vector2(0, velocity)
