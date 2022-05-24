@@ -38,7 +38,7 @@ func _physics_process(delta):
 			swim_jump = true
 			swimwait()
 			if Global.sounds:
-				get_parent().get_node("sounds2/jump").play()
+				Audio.get_node("jump").play()
 	if dir == -1:
 		dir = 0
 		if position.y == 400 and not swim_jump:
@@ -46,7 +46,7 @@ func _physics_process(delta):
 			swim_jump = true
 			swimwait()
 			if Global.sounds:
-				get_parent().get_node("sounds2/dive").play()
+				Audio.get_node("dive").play()
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func swimwait():#timer for game C, jumping

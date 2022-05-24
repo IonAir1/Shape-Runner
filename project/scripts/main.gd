@@ -145,7 +145,7 @@ func mutate(): #mutates/changes game
 	var wait = rand_range(mutate.x, mutate.y)
 	yield(get_tree().create_timer(wait, false), "timeout")
 	if Global.sounds:
-		get_node("sounds/mutate").play()
+		Audio.get_node("mutate").play()
 	get_node("obstacle").position = Vector2(624,393)
 	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)

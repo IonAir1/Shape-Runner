@@ -8,7 +8,7 @@ func _ready():
 		Global.first = false
 	if Global.sounds and Global.death_sound:
 		Global.death_sound = false
-		get_node("lost").play()
+		Audio.get_node("lost").play()
 
 	if Global.score > Global.bestscore: #set score
 		Global.bestscore = Global.score

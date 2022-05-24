@@ -19,7 +19,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			velocity.y = jump_speed
 			if Global.sounds:
-				get_parent().get_node("jump").play()
+				Audio.get_node("jump").play()
 
 
 func _on_Area2D_area_entered(area):

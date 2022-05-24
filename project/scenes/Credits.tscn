@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/back.png" type="Texture" id=2]
@@ -6,10 +6,8 @@
 [ext_resource path="res://scripts/background3.gd" type="Script" id=4]
 [ext_resource path="res://assets/obstacle.png" type="Texture" id=5]
 [ext_resource path="res://assets/ground.png" type="Texture" id=6]
-[ext_resource path="res://assets/jump.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/swimmer.png" type="Texture" id=8]
 [ext_resource path="res://scripts/playerai3.gd" type="Script" id=10]
-[ext_resource path="res://assets/dive.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/water.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -75,14 +73,6 @@ scale = Vector2( 20.0639, 1.19381 )
 z_index = -4
 texture = ExtResource( 5 )
 
-[node name="sounds2" type="Node" parent="background"]
-
-[node name="dive" type="AudioStreamPlayer" parent="background/sounds2"]
-stream = ExtResource( 11 )
-
-[node name="jump" type="AudioStreamPlayer" parent="background/sounds2"]
-stream = ExtResource( 7 )
-
 [node name="Player" type="KinematicBody2D" parent="background"]
 position = Vector2( 152.962, 400 )
 scale = Vector2( 0.2, 0.2 )
@@ -143,7 +133,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 1140.0
-margin_bottom = 21938.0
+margin_bottom = 580.0
 
 [node name="Upper" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1140.0
