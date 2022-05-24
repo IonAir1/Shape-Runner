@@ -11,7 +11,7 @@ func _physics_process(delta):
 	if global_position.x < -200:# or (Global.state != 1 and Global.state != 3 and Global.state !=6):
 		queue_free()
 	if Global.state == 2:
-		if mutate == true:
+		if mutate:
 			mutate = false
 			$Area2D.queue_free()
 		$upper.position.y -= 12

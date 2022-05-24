@@ -6,7 +6,7 @@ var gravity = 4000
 var friction = 0.1
 var acceleration = 0.25
 var velocity = Vector2.ZERO
-var jump = 0
+var jump = true
 
 
 func _physics_process(delta):
@@ -14,11 +14,12 @@ func _physics_process(delta):
 	gravity = 4000
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-	if jump == 1:
-		jump = 0
+	if jump:
+		jump = false
 		if is_on_floor():
 			velocity.y = jump_speed
-			get_parent().get_node("jump").play()
+			if Global.sounds:
+				get_parent().get_node("jump").play()
 
 
 func _on_Area2D_area_entered(area):

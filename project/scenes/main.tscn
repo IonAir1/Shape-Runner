@@ -126,7 +126,6 @@ texture = ExtResource( 12 )
 self_modulate = Color( 1, 1, 1, 0.188235 )
 position = Vector2( 0, 571.429 )
 rotation = -3.14159
-scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 [connection signal="pressed" from="touch" to="." method="_on_touch_pressed"]
 [connection signal="released" from="touch" to="." method="_on_touch_released"]

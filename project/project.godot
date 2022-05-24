@@ -18,6 +18,7 @@ _global_script_class_icons={
 config/name="Shape Runner"
 run/main_scene="res://scenes/Main Menu.tscn"
 boot_splash/image="res://assets/splash screen.png"
+boot_splash/bg_color=Color( 0.168627, 0.168627, 0.168627, 1 )
 config/icon="res://standard_icon.png"
 
 [autoload]

@@ -17,7 +17,40 @@ var new = false # new player shape
 var dev = false #is testing
 var end = false #game end
 var score_file = "user://score.save" #score save file
+var settings_file = "user://settings.save" #settings save file
 var guide = true #show guide
+var sounds = true #sounds
+var music = true #music
+var graphics = true #fancy graphics
+var death_sound = false #sound the death sound
+
+func load_settings():
+	var file = File.new()
+	if file.file_exists(settings_file):
+		file.open(settings_file, File.READ)
+		var load_dict = file.get_var()
+		sounds = load_dict["sounds"]
+		music = load_dict["music"]
+		guide = load_dict["guide"]
+		graphics = load_dict["graphics"]
+		file.close()
+	else:
+		sounds = true
+		music = true
+		guide = true
+		graphics = true
+
+func save_settings():
+	var save_dict = {
+	"sounds": sounds,
+	"music" : music,
+	"guide": guide,
+	"graphics": graphics,
+	}
+	var file = File.new()
+	file.open(settings_file, File.WRITE)
+	file.store_var(save_dict)
+	file.close()
 
 func load_score():
 	var file = File.new()

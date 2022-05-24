@@ -20,7 +20,7 @@ var startingstate = 0
 var twobuttons = [1, 2, 3, 6]
 
 func _process(delta):
-	if Global.guide == true:
+	if Global.guide:
 		if twobuttons.find(Global.state) != -1:
 			get_node("buttons/1").visible = false
 			get_node("buttons/2").visible = true
@@ -126,6 +126,9 @@ func _ready():
 	randomize()
 	Global.score = 0
 	Global.state = startingstate
+	if !Global.guide:
+		$buttons.visible = false
+		$buttons.visible = false
 	yield(get_tree().create_timer(1), "timeout")
 	obstacle_spawn()
 	mutate()
@@ -141,7 +144,8 @@ func score(): #adds score
 func mutate(): #mutates/changes game
 	var wait = rand_range(mutate.x, mutate.y)
 	yield(get_tree().create_timer(wait), "timeout")
-	get_node("sounds/mutate").play()
+	if Global.sounds:
+		get_node("sounds/mutate").play()
 	get_node("obstacle").position = Vector2(624,393)
 	yield(get_tree().create_timer(change), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
@@ -171,7 +175,7 @@ func _physics_process(delta):
 		Global.switch_to_d = false
 		velocity = 100
 	velocity = lerp(velocity, 0, water_rise)
-	if Global.switch_to_e == true:
+	if Global.switch_to_e:
 		Global.switch_to_e = false
 		velocity = -185
 		waterlower = get_tree().create_timer(3)
@@ -182,7 +186,7 @@ func _physics_process(delta):
 
 	if velocity != 0:
 		get_node("water").position -= Vector2(0, velocity)
-	elif Global.state == 4 and waterrepos == true:
+	elif Global.state == 4 and waterrepos:
 		if  waterlower.time_left <= 0:
 			waterrepos = false
 			get_node("water").position = Vector2(635, 1278)
@@ -191,6 +195,7 @@ func _physics_process(delta):
 	get_node("score/Score").text = str(Global.score)
 	if Global.end:
 		Global.end = false
+		Global.death_sound = true
 		get_tree().change_scene("res://scenes/Main Menu.tscn")
 
 

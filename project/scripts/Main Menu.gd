@@ -4,8 +4,10 @@ extends Control
 func _ready():
 	if Global.first:
 		Global.load_score()
+		Global.load_settings()
 		Global.first = false
-	else:
+	if Global.sounds and Global.death_sound:
+		Global.death_sound = false
 		get_node("lost").play()
 
 	if Global.score > Global.bestscore: #set score
@@ -21,7 +23,7 @@ func _on_play_pressed(): #play
 
 
 func _on_settings_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://scenes/Settings.tscn")
 
 
 func _on_credits_pressed():
