@@ -18,9 +18,13 @@ func _ready():
 func spawn(): #spawns running obstacle in main menu
 	var e = flying_obstacle.instance()
 	var height = rand_range(112, 608)
-	$Player.y_destination = height
+	delay_move(height)
 	e.position = Vector2(1400, height)
 	e.set_script(flying_script)
 	add_child(e)
 	yield(get_tree().create_timer(1.5,3),"timeout")
 	spawn()
+
+func delay_move(height):
+	yield(get_tree().create_timer(0.25), "timeout")
+	$Player.y_destination = height

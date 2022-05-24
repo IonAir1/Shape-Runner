@@ -9,19 +9,15 @@
 [ext_resource path="res://scripts/playerai2.gd" type="Script" id=10]
 [ext_resource path="res://scripts/background2.gd" type="Script" id=11]
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 680.801, 69.22 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 119.397, 119.959 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 128
 font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -29,11 +25,15 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=10]
 size = 72
 font_data = ExtResource( 1 )
 
@@ -62,11 +62,11 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 0, 0.017 )
-shape = SubResource( 9 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 5.2, -152.823 )
-shape = SubResource( 9 )
+shape = SubResource( 1 )
 
 [node name="ceiling" type="Sprite" parent="background/ground"]
 position = Vector2( 94, -203.603 )
@@ -95,26 +95,27 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/Player"]
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+anchor_bottom = 0.5
+margin_left = 70.0
+margin_top = -290.0
+margin_right = -70.0
+margin_bottom = 290.0
 mouse_filter = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 1183.0
-margin_bottom = 620.0
+margin_right = 1147.0
+margin_bottom = 580.0
 
 [node name="Upper" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1183.0
+margin_right = 1147.0
 margin_bottom = 130.0
 size_flags_vertical = 0
 __meta__ = {
@@ -147,110 +148,109 @@ margin_left = 188.0
 margin_top = 1.0
 margin_right = 719.0
 margin_bottom = 129.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "SETTINGS"
 valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 134.0
-margin_right = 1183.0
+margin_right = 1147.0
 margin_bottom = 480.0
 mouse_filter = 1
 
 [node name="Lower" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-margin_left = 8.0
-margin_right = 1175.0
+margin_right = 1147.0
 margin_bottom = 346.0
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/CenterContainer/Lower"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 1167.0
+margin_right = 1147.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 0, 130 )
 
 [node name="1st Set" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/Lower"]
 margin_top = 134.0
-margin_right = 1167.0
+margin_right = 1147.0
 margin_bottom = 206.0
 alignment = 1
 
 [node name="Sounds" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set"]
-margin_left = 181.0
-margin_right = 469.0
+margin_left = 171.0
+margin_right = 459.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "Sounds"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 473.0
-margin_right = 753.0
+margin_left = 463.0
+margin_right = 743.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 280, 0 )
 size_flags_horizontal = 5
 
 [node name="Music" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set"]
-margin_left = 757.0
-margin_right = 985.0
+margin_left = 747.0
+margin_right = 975.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Music"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/CenterContainer/Lower"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 210.0
-margin_right = 1167.0
+margin_right = 1147.0
 margin_bottom = 270.0
 rect_min_size = Vector2( 0, 60 )
 
 [node name="2nd Set" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/Lower"]
 margin_top = 274.0
-margin_right = 1167.0
+margin_right = 1147.0
 margin_bottom = 346.0
 alignment = 1
 
 [node name="Guide" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set"]
 margin_right = 498.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Button Guide"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 502.0
-margin_right = 622.0
+margin_right = 602.0
 margin_bottom = 72.0
-rect_min_size = Vector2( 120, 0 )
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 5
 
 [node name="Graphics" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set"]
-margin_left = 626.0
-margin_right = 1167.0
+margin_left = 606.0
+margin_right = 1147.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 541, 0 )
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Fancy Graphics"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Upper/Exit" to="." method="_on_Exit_pressed"]
