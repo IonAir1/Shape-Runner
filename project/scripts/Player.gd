@@ -18,14 +18,13 @@ func _ready():
 
 
 func swimwait():#timer for game C, jumping
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.5, false), "timeout")
 	swim_jump = false
 
 func _physics_process(delta):
 	var ceiling_height = get_parent().get_node("ground/ceiling/ceiling_pos").global_position.y + 25
 	if global_position.y <= ceiling_height:
 		global_position.y = ceiling_height
-
 
 	if Global.state == 0: #player properties for Game A
 		jump_speed = -1300
@@ -129,24 +128,24 @@ func _physics_process(delta):
 func pop(): #transition animation
 	var change = 0.02
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale += Vector2(0.1, 0.1)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("circle").scale = Vector2.ZERO
 

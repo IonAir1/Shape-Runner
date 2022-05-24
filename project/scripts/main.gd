@@ -28,7 +28,7 @@ func _process(delta):
 			get_node("buttons/1").visible = true
 			get_node("buttons/2").visible = false
 
-
+func resize():
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
 		position.x = (get_viewport_rect().size.x - (get_node("ground/ground").texture.get_size().x*5.33333))
 		position.y = (get_viewport_rect().size.y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
@@ -118,7 +118,7 @@ func obstacle_spawn(): #spawns obstacles
 		wait = rand_range(0.4, 1)
 
 
-	yield(get_tree().create_timer(wait), "timeout")
+	yield(get_tree().create_timer(wait, false), "timeout")
 	obstacle_spawn()
 
 
@@ -129,38 +129,38 @@ func _ready():
 	if !Global.guide:
 		$buttons.visible = false
 		$buttons.visible = false
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(1, false), "timeout")
 	obstacle_spawn()
 	mutate()
 	score()
 
 
 func score(): #adds score
-	yield(get_tree().create_timer(5), "timeout")
+	yield(get_tree().create_timer(5, false), "timeout")
 	Global.score += 50
 	score()
 
 
 func mutate(): #mutates/changes game
 	var wait = rand_range(mutate.x, mutate.y)
-	yield(get_tree().create_timer(wait), "timeout")
+	yield(get_tree().create_timer(wait, false), "timeout")
 	if Global.sounds:
 		get_node("sounds/mutate").play()
 	get_node("obstacle").position = Vector2(624,393)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(624,393)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(624,393)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(624,393)
 	Global.new = true
-	yield(get_tree().create_timer(change), "timeout")
+	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
 	Global.mutate = true
 	mutate()
