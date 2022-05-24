@@ -22,6 +22,29 @@ func swimwait():#timer for game C, jumping
 	swim_jump = false
 
 func _physics_process(delta):
+	if $sprite.texture == run:
+		$square.set_deferred("disabled", false)
+		$Area2D/square.set_deferred("disabled", false)
+		$triangle.set_deferred("disabled", true)
+		$Area2D/triangle.set_deferred("disabled", true)
+		$circle_.set_deferred("disabled", true)
+		$Area2D/circle.set_deferred("disabled", true)
+	if $sprite.texture == fly:
+		$square.set_deferred("disabled", true)
+		$Area2D/square.set_deferred("disabled", true)
+		$triangle.set_deferred("disabled", false)
+		$Area2D/triangle.set_deferred("disabled", false)
+		$circle_.set_deferred("disabled", true)
+		$Area2D/circle.set_deferred("disabled", true)
+	if $sprite.texture == swim:
+		$square.set_deferred("disabled", true)
+		$Area2D/square.set_deferred("disabled", true)
+		$triangle.set_deferred("disabled", true)
+		$Area2D/triangle.set_deferred("disabled", true)
+		$circle_.set_deferred("disabled", false)
+		$Area2D/circle.set_deferred("disabled", false)
+	
+	
 	var ceiling_height = get_parent().get_node("ground/ceiling/ceiling_pos").global_position.y + 25
 	if global_position.y <= ceiling_height:
 		global_position.y = ceiling_height
