@@ -24,6 +24,7 @@ var music = true #music
 var graphics = true #fancy graphics
 var death_sound = false #sound the death sound
 
+
 func load_settings():
 	var file = File.new()
 	if file.file_exists(settings_file):

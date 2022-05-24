@@ -21,10 +21,8 @@ func _ready():
 func _on_play_pressed(): #play
 	get_tree().change_scene("res://scenes/main.tscn")
 
-
 func _on_settings_pressed():
 	get_tree().change_scene("res://scenes/Settings.tscn")
 
-
 func _on_credits_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://scenes/Credits.tscn")

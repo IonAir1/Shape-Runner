@@ -27,7 +27,7 @@ func _physics_process(delta):
 		queue_free()
 
 func timerdelete():
-	yield(get_tree().create_timer(4), "timeout")
+	yield(get_tree().create_timer(4, false), "timeout")
 	queue_free()
 
 

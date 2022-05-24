@@ -30,8 +30,6 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if global_position.x < -400:
 		queue_free()
-	if Global.dev and Input.is_action_just_pressed("enter"):
-		speed == 0
 
 func _on_Area2D_area_entered(area): #game end
 	Global.end = true
