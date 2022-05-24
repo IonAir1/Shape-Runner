@@ -57,8 +57,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("w") or touch != 0:
 			if is_on_floor():
 				velocity.y = jump_speed
-				if Global.sounds:
-					Audio.get_node("jump").play()
+				Audio.get_node("jump").play()
 		get_node("sprite").texture = run
 
 
@@ -100,15 +99,13 @@ func _physics_process(delta):
 				velocity.y = jump_speed
 				swim_jump = true
 				swimwait()
-				if Global.sounds:
-					Audio.get_node("jump").play()
+				Audio.get_node("jump").play()
 		if Input.is_action_pressed("s") or touch == -1:
 			if position.y == 400 and not swim_jump:
 				velocity.y = jump_speed * -1
 				swim_jump = true
 				swimwait()
-				if Global.sounds:
-					Audio.get_node("dive").play()
+				Audio.get_node("dive").play()
 		velocity = move_and_slide(velocity, Vector2.UP)
 		get_node("sprite").texture = swim
 

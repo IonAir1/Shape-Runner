@@ -1,16 +1,35 @@
 extends Node
 
+var sound_bus = AudioServer.get_bus_index("Sounds")
+var music_bus = AudioServer.get_bus_index("Music")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	play_music(0)
 
+func _process(delta):
+	if Global.sounds:
+		AudioServer.set_bus_mute(sound_bus, false)
+	else:
+		AudioServer.set_bus_mute(sound_bus, true)
+	if Global.music:
+		AudioServer.set_bus_mute(music_bus, false)
+	else:
+		AudioServer.set_bus_mute(music_bus, true)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_a_bit_of_hope_finished():
+	play_music(1)
+
+func _on_retro_platforming_finished():
+	play_music(2)
+
+func play_music(music):
+	randomize()
+	if music == 1:
+		$"retro platforming".play()
+	elif music == 2:
+		$"a bit of hope".play()
+	else:
+		if randi()%2 > 0:
+			$"a bit of hope".play()
+		else:
+			$"retro platforming".play()

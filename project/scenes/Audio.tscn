@@ -14,22 +14,29 @@ script = ExtResource( 7 )
 [node name="a bit of hope" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -15.0
+bus = "Music"
 
 [node name="retro platforming" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -15.0
+bus = "Music"
 
 [node name="jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = 24.0
+bus = "Sounds"
 
 [node name="dive" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -5.0
+bus = "Sounds"
 
 [node name="lost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -5.0
+bus = "Sounds"
 
 [node name="mutate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "Sounds"
+[connection signal="finished" from="a bit of hope" to="." method="_on_a_bit_of_hope_finished"]
+[connection signal="finished" from="retro platforming" to="." method="_on_retro_platforming_finished"]

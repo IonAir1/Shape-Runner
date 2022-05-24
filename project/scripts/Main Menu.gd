@@ -6,7 +6,7 @@ func _ready():
 		Global.load_score()
 		Global.load_settings()
 		Global.first = false
-	if Global.sounds and Global.death_sound:
+	if Global.death_sound:
 		Global.death_sound = false
 		Audio.get_node("lost").play()
 
