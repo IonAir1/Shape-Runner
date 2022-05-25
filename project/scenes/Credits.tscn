@@ -50,6 +50,10 @@ color_ramp = SubResource( 4 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 255.19, 45 )
 
+[sub_resource type="DynamicFont" id=13]
+size = 24
+font_data = ExtResource( 9 )
+
 [sub_resource type="DynamicFont" id=9]
 size = 128
 font_data = ExtResource( 1 )
@@ -64,10 +68,6 @@ background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
-
-[sub_resource type="DynamicFont" id=13]
-size = 24
-font_data = ExtResource( 9 )
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
@@ -167,6 +167,19 @@ scale = Vector2( 0.2, 0.2 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/bottom"]
 position = Vector2( 2265.19, 925 )
 shape = SubResource( 8 )
+
+[node name="version" type="Label" parent="background"]
+margin_left = 980.0
+margin_top = 680.0
+margin_right = 1260.0
+margin_bottom = 709.0
+custom_fonts/font = SubResource( 13 )
+text = "Version 0.0.0"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 0.5
@@ -364,27 +377,6 @@ __meta__ = {
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
-
-[node name="version" type="MarginContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -300.0
-margin_top = -40.0
-margin_right = -20.0
-margin_bottom = -20.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="version" type="Label" parent="version"]
-margin_right = 280.0
-margin_bottom = 29.0
-custom_fonts/font = SubResource( 13 )
-text = "Version 0.0.0"
-align = 2
-valign = 2
 [connection signal="area_entered" from="background/middle" to="background/Player" method="_on_middle_area_entered"]
 [connection signal="area_entered" from="background/top" to="background/Player" method="_on_top_area_entered"]
 [connection signal="area_entered" from="background/bottom" to="background/Player" method="_on_bottom_area_entered"]

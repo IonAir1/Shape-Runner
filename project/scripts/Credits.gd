@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$version/version.text = Global.version
+	$background/version.text = "Version " + Global.version
 
 func _on_Exit_pressed():
 	Audio.get_node("click").play()

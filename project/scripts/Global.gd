@@ -1,6 +1,6 @@
 extends Node
 
-var version = "1.8.5" #Game Version
+var version = "1.8.6" #Game Version
 var state = 0 #current game playing
 var switch_to_b = false #signal to switch to game b
 var switch_to_c = false #signal to switch to game c
