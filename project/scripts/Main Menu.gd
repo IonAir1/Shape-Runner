@@ -8,8 +8,9 @@ func _ready():
 		Global.first = false
 	if Global.death_sound:
 		Global.death_sound = false
-		Audio.get_node("lost").play()
-
+		$fade.modulate = Color(0,0,0,1)
+		fade(10)
+	Global.state = 0
 	if Global.score > Global.bestscore: #set score
 		Global.bestscore = Global.score
 		Global.save_score()
@@ -22,6 +23,14 @@ func _ready():
 	get_node("Center/UI/VBoxContainer/score").text = "SCORE      " + str(Global.score)
 	get_node("Center/UI/VBoxContainer/best").text = "BEST SCORE      " + str(Global.bestscore)
 
+func fade(number):
+	if number > 0:
+		var a = number * 0.1
+		$fade.modulate = Color(0,0,0, a)
+		yield(get_tree().create_timer(0.02),"timeout")
+		fade(number - 1)
+	else:
+		$fade.modulate = Color(0,0,0,0)
 
 func _on_play_pressed(): #play
 	get_tree().change_scene("res://scenes/main.tscn")

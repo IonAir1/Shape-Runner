@@ -15,8 +15,12 @@ func _ready():
 func _physics_process(delta):
 	if Global.graphics:
 		modulate = Color(1.2, 1.2, 1.2, 1)
+		$Flying.emitting = true
+		$Flying.visible = true
 	else:
 		modulate = Color(1,1,1,1)
+		$Flying.emitting = false
+		$Flying.visible = false
 	var dir = 0
 	if (y_destination - 30) > position.y:
 		dir += 1

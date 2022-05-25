@@ -8,10 +8,6 @@ func _ready():
 	get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Graphics").modulate = pressed
 
 func _process(delta):
-	if Global.graphics:
-		$WorldEnvironment.environment.glow_enabled = true
-	else:
-		$WorldEnvironment.environment.glow_enabled = false
 	if Global.sounds:
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Sounds").modulate = pressed
 	else:
@@ -26,8 +22,10 @@ func _process(delta):
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Guide").modulate = darkened
 	if Global.graphics:
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Graphics").text = "fancy graphics"
+		$WorldEnvironment.environment.glow_enabled = true
 	else:
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Graphics").text = "fast graphics"
+		$WorldEnvironment.environment.glow_enabled = false
 
 
 

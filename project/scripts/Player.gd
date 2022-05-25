@@ -25,8 +25,13 @@ func _physics_process(delta):
 	
 	if Global.graphics:
 		if Global.state == 2:
-			modulate = Color(1.5, 1.5, 1.5, 1)
+			$sprite.self_modulate = Color(1.8, 3.6, 2.16, 1)
+			modulate = Color(1, 1, 1, 1)
+		elif Global.state == 3:
+			$sprite.self_modulate = Color(1.5, 3, 2.4, 1)
+			modulate = Color(1, 1, 1, 1)
 		else:
+			$sprite.self_modulate = Color(1, 1, 1, 1)
 			modulate = Color(1.2, 1.2, 1.2, 1)
 	
 	if $sprite.texture == run:
@@ -66,6 +71,10 @@ func _physics_process(delta):
 				velocity.y = jump_speed
 				Audio.get_node("jump").play()
 		get_node("sprite").texture = run
+		if Global.graphics:
+			$Running.emitting = true
+			$Flying.emitting = false
+			$Swimming.emitting = false
 
 
 	elif Global.state == 1 or Global.state == 3 or Global.state == 6: #player properties for Game B,D.G
@@ -87,6 +96,10 @@ func _physics_process(delta):
 			velocity.y = lerp(velocity.y, 0, friction)
 		velocity = move_and_slide(velocity, Vector2.UP)
 		get_node("sprite").texture = fly
+		if Global.graphics:
+			$Running.emitting = false
+			$Flying.emitting = true
+			$Swimming.emitting = false
 
 
 	elif Global.state == 2: #player properties for game C
@@ -115,6 +128,10 @@ func _physics_process(delta):
 				Audio.get_node("dive").play()
 		velocity = move_and_slide(velocity, Vector2.UP)
 		get_node("sprite").texture = swim
+		if Global.graphics:
+			$Running.emitting = false
+			$Flying.emitting = false
+			$Swimming.emitting = true
 
 
 	if Global.state == 4: #player properties for Game E
@@ -128,9 +145,13 @@ func _physics_process(delta):
 				if Global.sounds:
 					Audio.get_node("jump").play()
 		get_node("sprite").texture = run
+		if Global.graphics:
+			$Running.emitting = true
+			$Flying.emitting = false
+			$Swimming.emitting = false
 
 
-	if Global.state == 5: #player properties for Game E
+	if Global.state == 5: #player properties for Game F
 		if position.y < 360:
 			gravitydir = 1
 		else:
@@ -146,6 +167,10 @@ func _physics_process(delta):
 				if Global.sounds:
 					Audio.get_node("jump").play()
 		get_node("sprite").texture = run
+		if Global.graphics:
+			$Running.emitting = true
+			$Flying.emitting = false
+			$Swimming.emitting = false
 
 
 	if Global.new: #transition

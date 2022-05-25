@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/background.gd" type="Script" id=2]
@@ -8,55 +8,94 @@
 [ext_resource path="res://assets/watermark.png" type="Texture" id=7]
 [ext_resource path="res://assets/ground.png" type="Texture" id=9]
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 120.044, 119.979 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.2912, 23.9346 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0.4, 1 )
+colors = PoolColorArray( 0.0546875, 1, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+trail_size_modifier = SubResource( 23 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( -5, 1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 0.5
+scale = 2.5
+color_ramp = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 140
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=6]
 size = 70
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StyleBoxEmpty" id=31]
+
+[sub_resource type="DynamicFont" id=7]
 size = 100
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="DynamicFont" id=13]
+size = 70
+font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
-[sub_resource type="DynamicFont" id=16]
-size = 70
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id=16]
 
 [sub_resource type="StyleBoxEmpty" id=17]
 
 [sub_resource type="StyleBoxEmpty" id=18]
-
-[sub_resource type="StyleBoxEmpty" id=19]
-
-[sub_resource type="StyleBoxEmpty" id=20]
-
-[sub_resource type="StyleBoxEmpty" id=21]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -71,7 +110,7 @@ __meta__ = {
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = SubResource( 1 )
 
 [node name="background" type="Node2D" parent="."]
 position = Vector2( -42.5, 0 )
@@ -86,7 +125,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground/StaticBody2D"]
 position = Vector2( -0.763205, -0.0514048 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="cieling" type="Sprite" parent="background/ground"]
 position = Vector2( 3.17, -275.603 )
@@ -94,25 +133,29 @@ scale = Vector2( 1.01162, 0.924828 )
 texture = ExtResource( 9 )
 
 [node name="player" type="KinematicBody2D" parent="background"]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
 position = Vector2( 152.962, 692.513 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Area2D" type="Area2D" parent="background/player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/player/Area2D"]
 position = Vector2( 250, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/player"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="background/player"]
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
+
+[node name="Running" type="Particles2D" parent="background/player"]
+position = Vector2( -25, 25 )
+scale = Vector2( 10, 10 )
+emitting = false
+amount = 50
+local_coords = false
+process_material = SubResource( 9 )
 
 [node name="watermark" type="Sprite" parent="background"]
 visible = false
@@ -137,25 +180,25 @@ __meta__ = {
 
 [node name="UI" type="MarginContainer" parent="Center"]
 margin_left = 71.0
-margin_top = 3.0
+margin_top = 6.0
 margin_right = 1085.0
-margin_bottom = 606.0
+margin_bottom = 603.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Center/UI"]
 margin_right = 1014.0
-margin_bottom = 603.0
+margin_bottom = 597.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="title" type="Label" parent="Center/UI/VBoxContainer"]
-modulate = Color( 1.1, 1.1, 1.1, 1 )
+modulate = Color( 1.05, 1.05, 1.05, 1 )
 margin_right = 1014.0
 margin_bottom = 140.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
 text = "Shape runner"
 align = 1
 valign = 1
@@ -164,7 +207,7 @@ valign = 1
 margin_top = 144.0
 margin_right = 1014.0
 margin_bottom = 215.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 6 )
 text = "Score     999"
 align = 1
 autowrap = true
@@ -173,7 +216,7 @@ autowrap = true
 margin_top = 219.0
 margin_right = 1014.0
 margin_bottom = 290.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 6 )
 text = "Best Score     999"
 align = 1
 autowrap = true
@@ -188,17 +231,22 @@ custom_constants/separation = 100
 [node name="CenterContainer" type="CenterContainer" parent="Center/UI/VBoxContainer"]
 margin_top = 398.0
 margin_right = 1014.0
-margin_bottom = 504.0
+margin_bottom = 498.0
 
 [node name="play" type="Button" parent="Center/UI/VBoxContainer/CenterContainer"]
-modulate = Color( 1.1, 1.1, 1, 1 )
-margin_left = 387.0
-margin_right = 627.0
-margin_bottom = 106.0
+modulate = Color( 1.05, 1.05, 1, 1 )
+margin_left = 393.0
+margin_right = 621.0
+margin_bottom = 100.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 28 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "PLAY"
@@ -206,15 +254,15 @@ flat = true
 
 [node name="HSeparator3" type="HSeparator" parent="Center/UI/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 508.0
+margin_top = 502.0
 margin_right = 1014.0
-margin_bottom = 528.0
+margin_bottom = 522.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Center/UI/VBoxContainer"]
-margin_top = 532.0
+margin_top = 526.0
 margin_right = 1014.0
-margin_bottom = 603.0
+margin_bottom = 597.0
 alignment = 1
 
 [node name="settings" type="Button" parent="Center/UI/VBoxContainer/HBoxContainer"]
@@ -224,12 +272,12 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/focus = SubResource( 13 )
-custom_styles/disabled = SubResource( 14 )
-custom_styles/normal = SubResource( 15 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 26 )
+custom_styles/normal = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Settings"
@@ -249,16 +297,30 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 17 )
-custom_styles/pressed = SubResource( 18 )
-custom_styles/focus = SubResource( 19 )
-custom_styles/disabled = SubResource( 20 )
-custom_styles/normal = SubResource( 21 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Credits"
 flat = true
+
+[node name="fade" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="area_entered" from="background/player/Area2D" to="background/player" method="_on_Area2D_area_entered"]
 [connection signal="pressed" from="Center/UI/VBoxContainer/CenterContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Center/UI/VBoxContainer/HBoxContainer/settings" to="." method="_on_settings_pressed"]

@@ -12,9 +12,12 @@ var dir = 0
 func _physics_process(delta):
 	
 	if Global.graphics:
-		modulate = Color(1.5, 1.5, 1.5, 1)
+		$Swimming.emitting = true
+		$sprite.self_modulate = Color(1.8, 3.6, 2.16, 1)
+		modulate = Color(1,1,1,1)
 	else:
 		modulate = Color(1,1,1,1)
+		self_modulate = Color(1,1,1,1)
 	
 	if top_detect:
 		dir = -1

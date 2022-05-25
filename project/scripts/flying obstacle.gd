@@ -7,7 +7,8 @@ var mutate = true
 
 func _physics_process(delta):
 	if Global.graphics:
-		modulate = Color(1.5, 3, 1.8, 1)
+		if !Global.state == 3:
+			modulate = Color(1.5, 3, 1.8, 1)
 	else:
 		modulate = Color(1,1,1,1)
 	velocity.x = -1 * speed #movement
@@ -20,6 +21,8 @@ func _physics_process(delta):
 			$Area2D.queue_free()
 		$upper.position.y -= 12
 		$lower.position.y += 12
+		$obstacle2.position.y -= 12
+		$obstacle.position.y += 12
 		timerdelete()
 	if Global.state == 0:
 		scale.x -= 0.1

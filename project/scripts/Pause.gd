@@ -2,6 +2,7 @@ extends Node2D
 
 var pause = preload("res://assets/pause.png")
 var play = preload("res://assets/play.png")
+var disable = false
 
 func _ready():
 	$text.visible = false
@@ -12,8 +13,29 @@ func _process(delta):
 	$text.global_position.x = get_viewport_rect().size.x / 2
 	if Input.is_action_just_released("pause"):
 		toggle()
+	if Global.end:
+		Global.end = false
+		disable = true
+		get_tree().paused = true
+		Global.death_sound = true
+		if Global.graphics:
+			if Global.state == 0 or Global.state == 4 or Global.state == 5 or Global.state == 6:
+				get_parent().get_node("Player/Run_Explosion").emitting = true
+			elif Global.state == 1 or Global.state == 3 or Global.state == 7:
+				get_parent().get_node("Player/Fly_Explosion").emitting = true
+			else:
+				get_parent().get_node("Player/Swim_Explosion").emitting = true
+		
+		get_parent().get_node("Player/sprite").visible = false
+		yield(get_tree().create_timer(1), "timeout")
+		fade(10)
+		yield(get_tree().create_timer(0.35), "timeout")
+		get_tree().paused = false
+		get_tree().change_scene("res://scenes/Main Menu.tscn")
+
 
 func toggle():
+	if !disable:
 		if get_tree().paused:
 			$text/Number.visible = true
 			$text/Number.text = "3"
@@ -33,3 +55,9 @@ func toggle():
 
 func _on_TouchScreenButton_pressed():
 	toggle()
+
+func fade(number):
+	var a = (10 - number) * 0.1
+	get_parent().get_node("fade").modulate = Color(0,0,0, a)
+	yield(get_tree().create_timer(0.02),"timeout")
+	fade(number - 1)

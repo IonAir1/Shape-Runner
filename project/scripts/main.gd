@@ -71,9 +71,9 @@ func obstacle_spawn(): #spawns obstacles
 		if a == 2:
 			e.position = Vector2(1600,515)
 		e.set_script(swim_script)
-		e.a = a
 		if Global.graphics:
 			e.modulate = Color(1.5, 3, 1.8, 1)
+		e.a = a
 		add_child(e)
 		wait = rand_range(1.3, 3)
 
@@ -84,7 +84,7 @@ func obstacle_spawn(): #spawns obstacles
 		e.position = Vector2(1326, rand_range(20, 700))
 		e.set_script(flying_script)
 		if Global.graphics:
-			e.modulate = Color(1.5, 3, 1.8, 1)
+			e.modulate = Color(2, 4, 2.4, 1)
 		add_child(e)
 		wait = rand_range(0.2, 0.4)
 
@@ -180,6 +180,7 @@ func mutate(): #mutates/changes game
 	get_node("obstacle").position = Vector2(-1000,-1000)
 	Audio.get_node("mutate").play()
 	Global.mutate = true
+	
 	mutate()
 
 
@@ -210,10 +211,7 @@ func _physics_process(delta):
 
 
 	get_node("score/Score").text = str(Global.score)
-	if Global.end:
-		Global.end = false
-		Global.death_sound = true
-		get_tree().change_scene("res://scenes/Main Menu.tscn")
+
 
 
 func _on_touch_pressed():

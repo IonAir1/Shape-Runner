@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Settings.gd" type="Script" id=2]
@@ -9,35 +9,65 @@
 [ext_resource path="res://scripts/playerai2.gd" type="Script" id=10]
 [ext_resource path="res://scripts/background2.gd" type="Script" id=11]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 680.801, 69.22 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 119.397, 119.959 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0.4, 1 )
+colors = PoolColorArray( 1, 0.984375, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=24]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 24 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+trail_size_modifier = SubResource( 25 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 20.0
+gravity = Vector3( 98, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 0.5
+scale = 2.5
+color_ramp = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=28]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=29]
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=30]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=32]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=33]
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=34]
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=35]
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="Environment" id=11]
+[sub_resource type="Environment" id=36]
 background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
@@ -68,11 +98,11 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 0, 0.017 )
-shape = SubResource( 1 )
+shape = SubResource( 26 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 5.2, -152.823 )
-shape = SubResource( 1 )
+shape = SubResource( 26 )
 
 [node name="ceiling" type="Sprite" parent="background/ground"]
 position = Vector2( 94, -203.603 )
@@ -101,7 +131,15 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/Player"]
-shape = SubResource( 2 )
+shape = SubResource( 27 )
+
+[node name="Flying" type="Particles2D" parent="background/Player"]
+position = Vector2( -120, 0 )
+scale = Vector2( 10, 10 )
+emitting = false
+amount = 80
+local_coords = false
+process_material = SubResource( 15 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 0.5
@@ -154,7 +192,7 @@ margin_left = 188.0
 margin_top = 1.0
 margin_right = 719.0
 margin_bottom = 129.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 28 )
 text = "SETTINGS"
 valign = 1
 
@@ -184,12 +222,12 @@ alignment = 1
 margin_left = 171.0
 margin_right = 459.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 30 )
+custom_styles/focus = SubResource( 31 )
+custom_styles/disabled = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 34 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Sounds"
@@ -206,12 +244,12 @@ size_flags_horizontal = 5
 margin_left = 747.0
 margin_right = 975.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 30 )
+custom_styles/focus = SubResource( 31 )
+custom_styles/disabled = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Music"
@@ -232,12 +270,12 @@ alignment = 1
 [node name="Guide" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set"]
 margin_right = 498.0
 margin_bottom = 72.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 30 )
+custom_styles/focus = SubResource( 31 )
+custom_styles/disabled = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Button Guide"
@@ -255,18 +293,18 @@ margin_left = 606.0
 margin_right = 1147.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 541, 0 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 30 )
+custom_styles/focus = SubResource( 31 )
+custom_styles/disabled = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Fancy Graphics"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = SubResource( 36 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Upper/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Sounds" to="." method="_on_Sounds_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Music" to="." method="_on_Music_pressed"]

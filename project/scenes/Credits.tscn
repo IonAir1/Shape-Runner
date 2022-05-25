@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/back.png" type="Texture" id=2]
@@ -10,25 +10,54 @@
 [ext_resource path="res://scripts/playerai3.gd" type="Script" id=10]
 [ext_resource path="res://assets/water.png" type="Texture" id=12]
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 680.801, 69.22 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 119.397, 119.959 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0.4, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=26]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+trail_size_modifier = SubResource( 27 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( -1, 0.2, 0 )
+gravity = Vector3( 0, 30, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 0.5
+scale = 2.5
+color_ramp = SubResource( 17 )
+
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 255.19, 45 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=31]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=32]
 size = 32
 extra_spacing_bottom = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="Environment" id=11]
+[sub_resource type="Environment" id=33]
 background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
@@ -58,11 +87,11 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 0, 0.017 )
-shape = SubResource( 12 )
+shape = SubResource( 28 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 5.2, -152.823 )
-shape = SubResource( 12 )
+shape = SubResource( 28 )
 
 [node name="ceiling" type="Sprite" parent="background/ground"]
 position = Vector2( 94, -203.603 )
@@ -90,7 +119,15 @@ script = ExtResource( 10 )
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/Player"]
-shape = SubResource( 13 )
+shape = SubResource( 29 )
+
+[node name="Swimming" type="Particles2D" parent="background/Player"]
+position = Vector2( -120, 0 )
+scale = Vector2( 10, 10 )
+emitting = false
+amount = 50
+local_coords = false
+process_material = SubResource( 18 )
 
 [node name="water" type="Sprite" parent="background"]
 modulate = Color( 1, 1, 1, 0.388235 )
@@ -107,7 +144,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/middle"]
 position = Vector2( 2050.19, 4.99988 )
-shape = SubResource( 14 )
+shape = SubResource( 30 )
 
 [node name="top" type="Area2D" parent="background"]
 position = Vector2( 152.962, 400 )
@@ -115,7 +152,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/top"]
 position = Vector2( 2535.19, -1035 )
-shape = SubResource( 14 )
+shape = SubResource( 30 )
 
 [node name="bottom" type="Area2D" parent="background"]
 position = Vector2( 152.962, 400 )
@@ -123,7 +160,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/bottom"]
 position = Vector2( 2265.19, 925 )
-shape = SubResource( 14 )
+shape = SubResource( 30 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 0.5
@@ -175,7 +212,7 @@ margin_left = 188.0
 margin_top = 1.0
 margin_right = 668.0
 margin_bottom = 129.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 31 )
 text = "credits"
 valign = 1
 
@@ -190,12 +227,12 @@ rect_min_size = Vector2( 0, 70 )
 margin_top = 208.0
 margin_right = 1140.0
 margin_bottom = 579.0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 32 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia "
 fit_content_height = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = SubResource( 33 )
 [connection signal="area_entered" from="background/middle" to="background/Player" method="_on_middle_area_entered"]
 [connection signal="area_entered" from="background/top" to="background/Player" method="_on_top_area_entered"]
 [connection signal="area_entered" from="background/bottom" to="background/Player" method="_on_bottom_area_entered"]

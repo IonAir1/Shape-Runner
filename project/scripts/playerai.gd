@@ -10,6 +10,11 @@ var jump = false
 
 
 func _physics_process(delta):
+	if Global.graphics:
+		modulate = Color(1.2, 1.2, 1.2, 1)
+		$Running.emitting = true
+	else:
+		modulate = Color(1, 1, 1, 1)
 	jump_speed = -1300 #jump when obstacle detected
 	gravity = 4000
 	velocity.y += gravity * delta
