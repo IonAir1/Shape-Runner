@@ -31,6 +31,7 @@ func _process(delta):
 
 
 func _on_Exit_pressed():
+	Audio.get_node("click").play()
 	get_tree().change_scene("res://scenes/Main Menu.tscn")
 
 
@@ -39,10 +40,15 @@ func _on_Sounds_pressed():
 		Global.sounds = false
 	else:
 		Global.sounds = true
+		delayed_sound(0.05)
 	Global.save_settings()
 
+func delayed_sound(delay):
+	yield(get_tree().create_timer(delay),"timeout")
+	Audio.get_node("click").play()
 
 func _on_Music_pressed():
+	Audio.get_node("click").play()
 	if Global.music:
 		Global.music = false
 	else:
@@ -51,6 +57,7 @@ func _on_Music_pressed():
 
 
 func _on_Button_Guide_pressed():
+	Audio.get_node("click").play()
 	if Global.guide:
 		Global.guide = false
 	else:
@@ -59,6 +66,7 @@ func _on_Button_Guide_pressed():
 
 
 func _on_Graphics_pressed():
+	Audio.get_node("click").play()
 	if Global.graphics:
 		Global.graphics = false
 	else:

@@ -3,22 +3,28 @@ extends Node2D
 var pause = preload("res://assets/pause.png")
 var play = preload("res://assets/play.png")
 var disable = false
+var death_delay = false
 
 func _ready():
+	Global.end = false
 	$text.visible = false
 	$TouchScreenButton.normal = pause
+	yield(get_tree().create_timer(0.5, false), "timeout")
+	death_delay = true
 
 func _process(delta):
 	get_parent().resize()
 	$text.global_position.x = get_viewport_rect().size.x / 2
 	if Input.is_action_just_released("pause"):
 		toggle()
-	if Global.end:
+	if Global.end and death_delay:
 		Global.end = false
 		disable = true
 		get_tree().paused = true
 		Global.death_sound = true
 		get_parent().get_node("obstacle").position = Vector2(-1000,-1000)
+		get_parent().get_node("Player/circle").visible = false
+		Audio.get_node("explosion").play()
 		if Global.graphics:
 			if Global.state == 0 or Global.state == 4 or Global.state == 5:
 				get_parent().get_node("Player/Run_Explosion").emitting = true
@@ -55,6 +61,7 @@ func toggle():
 			$TouchScreenButton.normal = play
 
 func _on_TouchScreenButton_pressed():
+	Audio.get_node("click").play()
 	toggle()
 
 func fade(number):

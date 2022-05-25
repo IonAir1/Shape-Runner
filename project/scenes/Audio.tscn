@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/lost.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/jump.wav" type="AudioStream" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://assets/retro platforming.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/dive.wav" type="AudioStream" id=6]
 [ext_resource path="res://scripts/Audio.gd" type="Script" id=7]
+[ext_resource path="res://assets/pop.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/explosion.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/click.wav" type="AudioStream" id=10]
 
 [node name="Audio" type="Node"]
 pause_mode = 2
@@ -40,6 +43,19 @@ bus = "Sounds"
 
 [node name="mutate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "Sounds"
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = 6.0
+bus = "Sounds"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Sounds"
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 bus = "Sounds"
 [connection signal="finished" from="a bit of hope" to="." method="_on_a_bit_of_hope_finished"]
 [connection signal="finished" from="retro platforming" to="." method="_on_retro_platforming_finished"]

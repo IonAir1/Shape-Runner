@@ -4,7 +4,7 @@ var sound_bus = AudioServer.get_bus_index("Sounds")
 var music_bus = AudioServer.get_bus_index("Music")
 
 func _ready():
-	yield(get_tree().create_timer(5), "timeout")
+	yield(get_tree().create_timer(2.5), "timeout")
 	play_music(0)
 
 func _process(delta):

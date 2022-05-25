@@ -33,10 +33,13 @@ func fade(number):
 		$fade.modulate = Color(0,0,0,0)
 
 func _on_play_pressed(): #play
+	Audio.get_node("click").play()
 	get_tree().change_scene("res://scenes/main.tscn")
 
 func _on_settings_pressed():
+	Audio.get_node("click").play()
 	get_tree().change_scene("res://scenes/Settings.tscn")
 
 func _on_credits_pressed():
+	Audio.get_node("click").play()
 	get_tree().change_scene("res://scenes/Credits.tscn")

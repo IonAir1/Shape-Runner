@@ -15,7 +15,7 @@ var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
-var mutate = Vector2(5, 12)
+var mutate = Vector2(2, 3) #5 12
 var startingstate = 0
 var twobuttons = [1, 2, 3, 6]
 
@@ -165,6 +165,7 @@ func mutate(): #mutates/changes game
 	var wait = rand_range(mutate.x, mutate.y)
 	yield(get_tree().create_timer(wait, false), "timeout")
 	get_node("obstacle").position = Vector2(624,393)
+	Audio.get_node("mutate").play()
 	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
 	yield(get_tree().create_timer(change, false), "timeout")
@@ -180,7 +181,7 @@ func mutate(): #mutates/changes game
 	Global.new = true
 	yield(get_tree().create_timer(change, false), "timeout")
 	get_node("obstacle").position = Vector2(-1000,-1000)
-	Audio.get_node("mutate").play()
+	Audio.get_node("pop").play()
 	Global.mutate = true
 	
 	mutate()
