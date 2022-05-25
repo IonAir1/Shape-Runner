@@ -25,9 +25,6 @@ func _physics_process(delta):
 	
 	if Global.graphics:
 		if Global.state == 2:
-			$sprite.self_modulate = Color(1.8, 3.6, 2.16, 1)
-			modulate = Color(1, 1, 1, 1)
-		elif Global.state == 3:
 			$sprite.self_modulate = Color(1.5, 3, 2.4, 1)
 			modulate = Color(1, 1, 1, 1)
 		else:
@@ -72,9 +69,13 @@ func _physics_process(delta):
 				Audio.get_node("jump").play()
 		get_node("sprite").texture = run
 		if Global.graphics:
-			$Running.emitting = true
+			if is_on_floor():
+				$Running.emitting = true
+			else:
+				$Running.emitting = false
 			$Flying.emitting = false
 			$Swimming.emitting = false
+			$Running_reversed.emitting = false
 
 
 	elif Global.state == 1 or Global.state == 3 or Global.state == 6: #player properties for Game B,D.G
@@ -100,6 +101,7 @@ func _physics_process(delta):
 			$Running.emitting = false
 			$Flying.emitting = true
 			$Swimming.emitting = false
+			$Running_reversed.emitting = false
 
 
 	elif Global.state == 2: #player properties for game C
@@ -132,6 +134,7 @@ func _physics_process(delta):
 			$Running.emitting = false
 			$Flying.emitting = false
 			$Swimming.emitting = true
+			$Running_reversed.emitting = false
 
 
 	if Global.state == 4: #player properties for Game E
@@ -146,9 +149,13 @@ func _physics_process(delta):
 					Audio.get_node("jump").play()
 		get_node("sprite").texture = run
 		if Global.graphics:
-			$Running.emitting = true
+			if is_on_floor():
+				$Running.emitting = true
+			else:
+				$Running.emitting = false
 			$Flying.emitting = false
 			$Swimming.emitting = false
+			$Running_reversed.emitting = false
 
 
 	if Global.state == 5: #player properties for Game F
@@ -168,7 +175,14 @@ func _physics_process(delta):
 					Audio.get_node("jump").play()
 		get_node("sprite").texture = run
 		if Global.graphics:
-			$Running.emitting = true
+			if is_on_floor():
+				$Running.emitting = true
+			else:
+				$Running.emitting = false
+			if is_on_ceiling():
+				$Running_reversed.emitting = true
+			else:
+				$Running_reversed.emitting = false
 			$Flying.emitting = false
 			$Swimming.emitting = false
 

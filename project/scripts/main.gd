@@ -70,9 +70,9 @@ func obstacle_spawn(): #spawns obstacles
 			e.position = Vector2(1600,400)
 		if a == 2:
 			e.position = Vector2(1600,515)
-		e.set_script(swim_script)
 		if Global.graphics:
 			e.modulate = Color(1.5, 3, 1.8, 1)
+		e.set_script(swim_script)
 		e.a = a
 		add_child(e)
 		wait = rand_range(1.3, 3)
@@ -84,7 +84,7 @@ func obstacle_spawn(): #spawns obstacles
 		e.position = Vector2(1326, rand_range(20, 700))
 		e.set_script(flying_script)
 		if Global.graphics:
-			e.modulate = Color(2, 4, 2.4, 1)
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(0.2, 0.4)
 
@@ -145,8 +145,10 @@ func _ready():
 		$buttons.visible = false
 	if Global.graphics:
 		$WorldEnvironment.environment.glow_enabled = true
+		$water.z_index = 0
 	else:
 		$WorldEnvironment.environment.glow_enabled = false
+		$water.z_index = 10
 	yield(get_tree().create_timer(1, false), "timeout")
 	obstacle_spawn()
 	mutate()

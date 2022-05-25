@@ -22,21 +22,21 @@ extents = Vector2( 120.044, 119.979 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.2912, 23.9346 )
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=29]
 offsets = PoolRealArray( 0.4, 1 )
 colors = PoolColorArray( 0.0546875, 1, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
 
-[sub_resource type="Curve" id=22]
+[sub_resource type="Curve" id=31]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=23]
-curve = SubResource( 22 )
+[sub_resource type="CurveTexture" id=32]
+curve = SubResource( 31 )
 
-[sub_resource type="ParticlesMaterial" id=9]
-trail_size_modifier = SubResource( 23 )
+[sub_resource type="ParticlesMaterial" id=33]
+trail_size_modifier = SubResource( 32 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -49,43 +49,19 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 0.5
 scale = 2.5
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 30 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=10]
 size = 140
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=11]
 size = 70
 font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=27]
-
-[sub_resource type="StyleBoxEmpty" id=28]
-
-[sub_resource type="StyleBoxEmpty" id=29]
-
-[sub_resource type="StyleBoxEmpty" id=30]
-
-[sub_resource type="StyleBoxEmpty" id=31]
-
-[sub_resource type="DynamicFont" id=7]
-size = 100
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=24]
-
-[sub_resource type="StyleBoxEmpty" id=25]
-
-[sub_resource type="StyleBoxEmpty" id=10]
-
-[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="DynamicFont" id=13]
-size = 70
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
@@ -93,9 +69,33 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="StyleBoxEmpty" id=17]
+[sub_resource type="DynamicFont" id=17]
+size = 100
+font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="DynamicFont" id=23]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxEmpty" id=28]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -151,11 +151,11 @@ texture = ExtResource( 5 )
 
 [node name="Running" type="Particles2D" parent="background/player"]
 position = Vector2( -25, 25 )
-scale = Vector2( 10, 10 )
+scale = Vector2( 2, 2 )
 emitting = false
 amount = 50
 local_coords = false
-process_material = SubResource( 9 )
+process_material = SubResource( 33 )
 
 [node name="watermark" type="Sprite" parent="background"]
 visible = false
@@ -198,7 +198,7 @@ __meta__ = {
 modulate = Color( 1.05, 1.05, 1.05, 1 )
 margin_right = 1014.0
 margin_bottom = 140.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 10 )
 text = "Shape runner"
 align = 1
 valign = 1
@@ -207,7 +207,7 @@ valign = 1
 margin_top = 144.0
 margin_right = 1014.0
 margin_bottom = 215.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 11 )
 text = "Score     999"
 align = 1
 autowrap = true
@@ -216,7 +216,7 @@ autowrap = true
 margin_top = 219.0
 margin_right = 1014.0
 margin_bottom = 290.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 11 )
 text = "Best Score     999"
 align = 1
 autowrap = true
@@ -241,12 +241,12 @@ margin_bottom = 100.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 27 )
-custom_styles/pressed = SubResource( 28 )
-custom_styles/focus = SubResource( 29 )
-custom_styles/disabled = SubResource( 30 )
-custom_styles/normal = SubResource( 31 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "PLAY"
@@ -272,12 +272,12 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 24 )
-custom_styles/pressed = SubResource( 25 )
-custom_styles/focus = SubResource( 10 )
-custom_styles/disabled = SubResource( 26 )
-custom_styles/normal = SubResource( 12 )
-custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/disabled = SubResource( 21 )
+custom_styles/normal = SubResource( 22 )
+custom_fonts/font = SubResource( 23 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Settings"
@@ -297,12 +297,12 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/disabled = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 26 )
+custom_styles/disabled = SubResource( 27 )
+custom_styles/normal = SubResource( 28 )
+custom_fonts/font = SubResource( 23 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Credits"

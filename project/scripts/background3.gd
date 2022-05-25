@@ -14,6 +14,10 @@ func _process(delta):
 	vprect = get_viewport_rect().size
 
 func _ready():
+	if Global.graphics:
+		$water.z_index = 0
+	else:
+		$water.z_index = 10
 	yield(get_tree().create_timer(1), "timeout")
 	spawn()
 
@@ -22,16 +26,12 @@ func spawn():
 	var a = randi()%3
 	if a == 0:
 		e.position = Vector2(1600,320)
-		if Global.graphics:
-			e.modulate = Color(1.5, 3, 1.8, 1)
 	if a == 1:
 		e.position = Vector2(1600,400)
-		if Global.graphics:
-			e.modulate = Color(1.5, 3, 1.8, 1)
 	if a == 2:
 		e.position = Vector2(1600,515)
-		if Global.graphics:
-			e.modulate = Color(1.5, 3, 1.8, 1)
+	if Global.graphics:
+		e.modulate = Color(1.5, 3, 1.8, 1)
 	e.set_script(swim_script)
 	e.a = a
 	add_child(e)

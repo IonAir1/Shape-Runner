@@ -18,10 +18,11 @@ func _process(delta):
 		disable = true
 		get_tree().paused = true
 		Global.death_sound = true
+		get_parent().get_node("obstacle").position = Vector2(-1000,-1000)
 		if Global.graphics:
-			if Global.state == 0 or Global.state == 4 or Global.state == 5 or Global.state == 6:
+			if Global.state == 0 or Global.state == 4 or Global.state == 5:
 				get_parent().get_node("Player/Run_Explosion").emitting = true
-			elif Global.state == 1 or Global.state == 3 or Global.state == 7:
+			elif Global.state == 1 or Global.state == 3 or Global.state == 6:
 				get_parent().get_node("Player/Fly_Explosion").emitting = true
 			else:
 				get_parent().get_node("Player/Swim_Explosion").emitting = true

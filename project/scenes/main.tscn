@@ -75,7 +75,6 @@ position = Vector2( -6.136, 120 )
 modulate = Color( 1, 1, 1, 0.388235 )
 position = Vector2( -947, 1600 )
 scale = Vector2( 35.9389, 14.3044 )
-z_index = 10
 texture = ExtResource( 4 )
 
 [node name="obstacle" type="Sprite" parent="."]
