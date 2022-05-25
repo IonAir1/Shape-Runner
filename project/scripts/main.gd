@@ -45,6 +45,8 @@ func obstacle_spawn(): #spawns obstacles
 		e.size = a.normalized()
 		e.game = 1
 		e.gravitydir = -1
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(0.8, 3)
 
@@ -53,6 +55,8 @@ func obstacle_spawn(): #spawns obstacles
 		var e = flying_obstacle.instance()
 		e.position = Vector2(1400, rand_range(112, 608))
 		e.set_script(flying_script)
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(1, 2.3)
 
@@ -68,6 +72,8 @@ func obstacle_spawn(): #spawns obstacles
 			e.position = Vector2(1600,515)
 		e.set_script(swim_script)
 		e.a = a
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(1.3, 3)
 
@@ -77,6 +83,8 @@ func obstacle_spawn(): #spawns obstacles
 		var e = running_obstacle.instance()
 		e.position = Vector2(1326, rand_range(20, 700))
 		e.set_script(flying_script)
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(0.2, 0.4)
 
@@ -88,6 +96,8 @@ func obstacle_spawn(): #spawns obstacles
 		e.set_script(bounce_script)
 		e.size = rand_range(3, 15) / 10
 		e.bounciness = rand_range(6, 15)
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(1, 2.8)
 
@@ -105,6 +115,8 @@ func obstacle_spawn(): #spawns obstacles
 				e.gravitydir = 1
 			e.size = Vector2(0.6, 0.6)
 			e.game = 1
+			if Global.graphics:
+				e.modulate = Color(1.5, 3, 1.8, 1)
 			add_child(e)
 		wait = rand_range(0.2, 1)
 
@@ -114,6 +126,8 @@ func obstacle_spawn(): #spawns obstacles
 		var e = running_obstacle.instance()
 		e.position = Vector2(1400, rand_range(0, 720))
 		e.set_script(flying_script)
+		if Global.graphics:
+			e.modulate = Color(1.5, 3, 1.8, 1)
 		add_child(e)
 		wait = rand_range(0.4, 1)
 
@@ -129,6 +143,10 @@ func _ready():
 	if !Global.guide:
 		$buttons.visible = false
 		$buttons.visible = false
+	if Global.graphics:
+		$WorldEnvironment.environment.glow_enabled = true
+	else:
+		$WorldEnvironment.environment.glow_enabled = false
 	yield(get_tree().create_timer(1, false), "timeout")
 	obstacle_spawn()
 	mutate()

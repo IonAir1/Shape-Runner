@@ -22,6 +22,13 @@ func swimwait():#timer for game C, jumping
 	swim_jump = false
 
 func _physics_process(delta):
+	
+	if Global.graphics:
+		if Global.state == 2:
+			modulate = Color(1.5, 1.5, 1.5, 1)
+		else:
+			modulate = Color(1.2, 1.2, 1.2, 1)
+	
 	if $sprite.texture == run:
 		$square.set_deferred("disabled", false)
 		$Area2D/square.set_deferred("disabled", false)

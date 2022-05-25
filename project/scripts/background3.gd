@@ -28,6 +28,8 @@ func spawn():
 		e.position = Vector2(1600,515)
 	e.set_script(swim_script)
 	e.a = a
+	if Global.graphics:
+		e.modulate = Color(1.5, 3, 1.8, 1)
 	add_child(e)
 	yield(get_tree().create_timer(rand_range(1.3, 3)),"timeout")
 	spawn()

@@ -22,6 +22,8 @@ func spawn(): #spawns running obstacle in main menu
 	e.set_script(running_script)
 	var a = Vector2(rand_range(0.2, 0.6), rand_range(0.2, 0.6))
 	e.size = a.normalized()
+	if Global.graphics:
+		e.modulate = Color(1.5, 3, 1.8, 1)
 	add_child(e)
 	var wait = rand_range(0.8, 3)
 	yield(get_tree().create_timer(wait), "timeout")

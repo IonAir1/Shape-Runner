@@ -13,6 +13,10 @@ func _ready():
 	#print(get_tree().get_current_scene().get_name())
 
 func _physics_process(delta):
+	if Global.graphics:
+		modulate = Color(1.2, 1.2, 1.2, 1)
+	else:
+		modulate = Color(1,1,1,1)
 	var dir = 0
 	if (y_destination - 30) > position.y:
 		dir += 1

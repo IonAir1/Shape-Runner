@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/back.png" type="Texture" id=2]
@@ -10,23 +10,29 @@
 [ext_resource path="res://scripts/playerai3.gd" type="Script" id=10]
 [ext_resource path="res://assets/water.png" type="Texture" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 680.801, 69.22 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 119.397, 119.959 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 255.19, 45 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=15]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=16]
 size = 32
 extra_spacing_bottom = 20
 font_data = ExtResource( 1 )
+
+[sub_resource type="Environment" id=11]
+background_mode = 4
+glow_enabled = true
+glow_blend_mode = 0
+glow_bicubic_upscale = true
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
@@ -52,11 +58,11 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 0, 0.017 )
-shape = SubResource( 1 )
+shape = SubResource( 12 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/ground"]
 position = Vector2( 5.2, -152.823 )
-shape = SubResource( 1 )
+shape = SubResource( 12 )
 
 [node name="ceiling" type="Sprite" parent="background/ground"]
 position = Vector2( 94, -203.603 )
@@ -84,7 +90,7 @@ script = ExtResource( 10 )
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/Player"]
-shape = SubResource( 2 )
+shape = SubResource( 13 )
 
 [node name="water" type="Sprite" parent="background"]
 modulate = Color( 1, 1, 1, 0.388235 )
@@ -101,7 +107,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/middle"]
 position = Vector2( 2050.19, 4.99988 )
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="top" type="Area2D" parent="background"]
 position = Vector2( 152.962, 400 )
@@ -109,7 +115,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/top"]
 position = Vector2( 2535.19, -1035 )
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="bottom" type="Area2D" parent="background"]
 position = Vector2( 152.962, 400 )
@@ -117,7 +123,7 @@ scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/bottom"]
 position = Vector2( 2265.19, 925 )
-shape = SubResource( 3 )
+shape = SubResource( 14 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 0.5
@@ -169,7 +175,7 @@ margin_left = 188.0
 margin_top = 1.0
 margin_right = 668.0
 margin_bottom = 129.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 15 )
 text = "credits"
 valign = 1
 
@@ -184,9 +190,12 @@ rect_min_size = Vector2( 0, 70 )
 margin_top = 208.0
 margin_right = 1140.0
 margin_bottom = 579.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 16 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia "
 fit_content_height = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 11 )
 [connection signal="area_entered" from="background/middle" to="background/Player" method="_on_middle_area_entered"]
 [connection signal="area_entered" from="background/top" to="background/Player" method="_on_top_area_entered"]
 [connection signal="area_entered" from="background/bottom" to="background/Player" method="_on_bottom_area_entered"]

@@ -13,7 +13,12 @@ func _ready():
 	if Global.score > Global.bestscore: #set score
 		Global.bestscore = Global.score
 		Global.save_score()
-
+	
+	if Global.graphics:
+		$WorldEnvironment.environment.glow_enabled = true
+	else:
+		$WorldEnvironment.environment.glow_enabled = false
+	
 	get_node("Center/UI/VBoxContainer/score").text = "SCORE      " + str(Global.score)
 	get_node("Center/UI/VBoxContainer/best").text = "BEST SCORE      " + str(Global.bestscore)
 

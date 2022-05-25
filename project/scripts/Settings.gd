@@ -1,13 +1,17 @@
 extends Control
 
-var pressed = Color(1,1,1,1)
+var pressed = Color(1.1,1.1,1.1,1)
 var darkened = Color(0.5,0.5,0.5,1)
 
 
 func _ready():
-	pass
+	get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Graphics").modulate = pressed
 
 func _process(delta):
+	if Global.graphics:
+		$WorldEnvironment.environment.glow_enabled = true
+	else:
+		$WorldEnvironment.environment.glow_enabled = false
 	if Global.sounds:
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Sounds").modulate = pressed
 	else:

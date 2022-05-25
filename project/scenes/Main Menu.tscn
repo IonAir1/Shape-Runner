@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/Anniversary.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/background.gd" type="Script" id=2]
@@ -8,39 +8,35 @@
 [ext_resource path="res://assets/watermark.png" type="Texture" id=7]
 [ext_resource path="res://assets/ground.png" type="Texture" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Environment" id=4]
+background_mode = 4
+glow_enabled = true
+glow_blend_mode = 0
+glow_bicubic_upscale = true
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 120.044, 119.979 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 24.2912, 23.9346 )
 
-[sub_resource type="RectangleShape2D" id=3]
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=8]
 size = 140
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=9]
 size = 70
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 size = 100
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="StyleBoxEmpty" id=10]
-
 [sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="DynamicFont" id=12]
-size = 70
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -48,9 +44,19 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
-[sub_resource type="StyleBoxEmpty" id=16]
+[sub_resource type="DynamicFont" id=16]
+size = 70
+font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=21]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -63,6 +69,9 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 4 )
 
 [node name="background" type="Node2D" parent="."]
 position = Vector2( -42.5, 0 )
@@ -77,7 +86,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/ground/StaticBody2D"]
 position = Vector2( -0.763205, -0.0514048 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="cieling" type="Sprite" parent="background/ground"]
 position = Vector2( 3.17, -275.603 )
@@ -85,24 +94,25 @@ scale = Vector2( 1.01162, 0.924828 )
 texture = ExtResource( 9 )
 
 [node name="player" type="KinematicBody2D" parent="background"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 position = Vector2( 152.962, 692.513 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="background/player"]
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="background/player"]
-shape = SubResource( 2 )
-
 [node name="Area2D" type="Area2D" parent="background/player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/player/Area2D"]
 position = Vector2( 250, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/player"]
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="background/player"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
 
 [node name="watermark" type="Sprite" parent="background"]
 visible = false
@@ -142,9 +152,10 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="Center/UI/VBoxContainer"]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
 margin_right = 1014.0
 margin_bottom = 140.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 8 )
 text = "Shape runner"
 align = 1
 valign = 1
@@ -153,7 +164,7 @@ valign = 1
 margin_top = 144.0
 margin_right = 1014.0
 margin_bottom = 215.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 9 )
 text = "Score     999"
 align = 1
 autowrap = true
@@ -162,7 +173,7 @@ autowrap = true
 margin_top = 219.0
 margin_right = 1014.0
 margin_bottom = 290.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 9 )
 text = "Best Score     999"
 align = 1
 autowrap = true
@@ -180,13 +191,16 @@ margin_right = 1014.0
 margin_bottom = 504.0
 
 [node name="play" type="Button" parent="Center/UI/VBoxContainer/CenterContainer"]
+modulate = Color( 1.1, 1.1, 1, 1 )
 margin_left = 387.0
 margin_right = 627.0
 margin_bottom = 106.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "PLAY"
 flat = true
 
@@ -210,12 +224,14 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Settings"
 flat = true
 
@@ -233,12 +249,14 @@ margin_bottom = 71.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 14 )
-custom_styles/focus = SubResource( 15 )
-custom_styles/disabled = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/hover = SubResource( 17 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/disabled = SubResource( 20 )
+custom_styles/normal = SubResource( 21 )
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 text = "Credits"
 flat = true
 [connection signal="area_entered" from="background/player/Area2D" to="background/player" method="_on_Area2D_area_entered"]

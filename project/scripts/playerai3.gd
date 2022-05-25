@@ -10,6 +10,12 @@ var bottom_detect = false
 var dir = 0
 
 func _physics_process(delta):
+	
+	if Global.graphics:
+		modulate = Color(1.5, 1.5, 1.5, 1)
+	else:
+		modulate = Color(1,1,1,1)
+	
 	if top_detect:
 		dir = -1
 	elif bottom_detect:
