@@ -13,21 +13,21 @@ radius = 120.0
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 120, 120 )
 
-[sub_resource type="Gradient" id=33]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.4, 1 )
 colors = PoolColorArray( 0.0546875, 1, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=34]
-gradient = SubResource( 33 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=35]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=36]
-curve = SubResource( 35 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=37]
-trail_size_modifier = SubResource( 36 )
+[sub_resource type="ParticlesMaterial" id=8]
+trail_size_modifier = SubResource( 7 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -40,23 +40,23 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 0.5
 scale = 2.5
-color_ramp = SubResource( 34 )
+color_ramp = SubResource( 5 )
 
-[sub_resource type="Gradient" id=29]
+[sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0.4, 1 )
 colors = PoolColorArray( 0.0546875, 1, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=30]
-gradient = SubResource( 29 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
-[sub_resource type="Curve" id=31]
+[sub_resource type="Curve" id=11]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=32]
-curve = SubResource( 31 )
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=9]
-trail_size_modifier = SubResource( 32 )
+[sub_resource type="ParticlesMaterial" id=13]
+trail_size_modifier = SubResource( 12 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -69,23 +69,23 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 0.5
 scale = 2.5
-color_ramp = SubResource( 30 )
+color_ramp = SubResource( 10 )
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.4, 1 )
 colors = PoolColorArray( 1, 0.984375, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=16]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=38]
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=39]
-trail_size_modifier = SubResource( 38 )
+[sub_resource type="ParticlesMaterial" id=18]
+trail_size_modifier = SubResource( 17 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -99,23 +99,23 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 0.5
 scale = 2.5
-color_ramp = SubResource( 11 )
+color_ramp = SubResource( 15 )
 
-[sub_resource type="Gradient" id=15]
+[sub_resource type="Gradient" id=19]
 offsets = PoolRealArray( 0.4, 1 )
 colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=16]
-gradient = SubResource( 15 )
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
 
-[sub_resource type="Curve" id=17]
+[sub_resource type="Curve" id=21]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=40]
-curve = SubResource( 17 )
+[sub_resource type="CurveTexture" id=22]
+curve = SubResource( 21 )
 
-[sub_resource type="ParticlesMaterial" id=41]
-trail_size_modifier = SubResource( 40 )
+[sub_resource type="ParticlesMaterial" id=23]
+trail_size_modifier = SubResource( 22 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -128,50 +128,11 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 0.5
 scale = 2.5
-color_ramp = SubResource( 16 )
-
-[sub_resource type="Gradient" id=20]
-offsets = PoolRealArray( 0.4, 1 )
-colors = PoolColorArray( 0.265625, 1, 0, 1, 0, 0, 0, 0 )
-
-[sub_resource type="GradientTexture" id=21]
-gradient = SubResource( 20 )
-
-[sub_resource type="ParticlesMaterial" id=22]
-emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-spread = 160.0
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 200.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 100.0
-damping_random = 0.5
-scale = 5.0
-color_ramp = SubResource( 21 )
-
-[sub_resource type="ParticlesMaterial" id=23]
-emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 200.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 100.0
-damping_random = 0.5
-scale = 5.0
-color_ramp = SubResource( 11 )
+color_ramp = SubResource( 20 )
 
 [sub_resource type="Gradient" id=24]
 offsets = PoolRealArray( 0.4, 1 )
-colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 0 )
+colors = PoolColorArray( 0.265625, 1, 0, 1, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture" id=25]
 gradient = SubResource( 24 )
@@ -191,6 +152,45 @@ damping = 100.0
 damping_random = 0.5
 scale = 5.0
 color_ramp = SubResource( 25 )
+
+[sub_resource type="ParticlesMaterial" id=27]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 0.5
+scale = 5.0
+color_ramp = SubResource( 15 )
+
+[sub_resource type="Gradient" id=28]
+offsets = PoolRealArray( 0.4, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 28 )
+
+[sub_resource type="ParticlesMaterial" id=30]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 160.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 0.5
+scale = 5.0
+color_ramp = SubResource( 29 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.2, 0.2 )
@@ -230,7 +230,7 @@ scale = Vector2( 10, 10 )
 emitting = false
 amount = 50
 local_coords = false
-process_material = SubResource( 37 )
+process_material = SubResource( 8 )
 
 [node name="Running_reversed" type="Particles2D" parent="."]
 position = Vector2( -120, -120 )
@@ -238,7 +238,7 @@ scale = Vector2( 10, 10 )
 emitting = false
 amount = 50
 local_coords = false
-process_material = SubResource( 9 )
+process_material = SubResource( 13 )
 
 [node name="Flying" type="Particles2D" parent="."]
 position = Vector2( -120, 0 )
@@ -246,7 +246,7 @@ scale = Vector2( 10, 10 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 39 )
+process_material = SubResource( 18 )
 
 [node name="Swimming" type="Particles2D" parent="."]
 position = Vector2( -120, 0 )
@@ -254,7 +254,7 @@ scale = Vector2( 10, 10 )
 emitting = false
 amount = 50
 local_coords = false
-process_material = SubResource( 41 )
+process_material = SubResource( 23 )
 
 [node name="Run_Explosion" type="Particles2D" parent="."]
 pause_mode = 2
@@ -263,7 +263,7 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 0.8
-process_material = SubResource( 22 )
+process_material = SubResource( 26 )
 
 [node name="Fly_Explosion" type="Particles2D" parent="."]
 pause_mode = 2
@@ -272,7 +272,7 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 0.8
-process_material = SubResource( 23 )
+process_material = SubResource( 27 )
 
 [node name="Swim_Explosion" type="Particles2D" parent="."]
 pause_mode = 2
@@ -281,4 +281,4 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 0.8
-process_material = SubResource( 26 )
+process_material = SubResource( 30 )

@@ -13,7 +13,7 @@ func _ready():
 	death_delay = true
 
 func _process(delta):
-	get_parent().resize()
+	get_parent().resize(get_viewport_rect().size.x, get_viewport_rect().size.y)
 	$text.global_position.x = get_viewport_rect().size.x / 2
 	if Input.is_action_just_released("pause"):
 		toggle()
@@ -26,6 +26,11 @@ func _process(delta):
 		get_parent().get_node("Player/circle").visible = false
 		Audio.get_node("explosion").play()
 		if Global.graphics:
+			get_parent().get_node("Camera2D").shake(0.5, 30, 8)
+			get_parent().get_node("Player/Running").pause_mode = Node.PAUSE_MODE_PROCESS
+			get_parent().get_node("Player/Running_reversed").pause_mode = Node.PAUSE_MODE_PROCESS
+			get_parent().get_node("Player/Flying").pause_mode = Node.PAUSE_MODE_PROCESS
+			get_parent().get_node("Player/Swimming").pause_mode = Node.PAUSE_MODE_PROCESS
 			if Global.state == 0 or Global.state == 4 or Global.state == 5:
 				get_parent().get_node("Player/Run_Explosion").emitting = true
 			elif Global.state == 1 or Global.state == 3 or Global.state == 6:

@@ -15,7 +15,7 @@ var vprect = Vector2()
 var waterlower
 var waterrepos = false
 var wait = 1
-var mutate = Vector2(2, 3) #5 12
+var mutate = Vector2(5, 12) #5 12
 var startingstate = 0
 var twobuttons = [1, 2, 3, 6]
 
@@ -28,10 +28,10 @@ func _process(delta):
 			get_node("buttons/1").visible = true
 			get_node("buttons/2").visible = false
 
-func resize():
-	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
-		position.x = (get_viewport_rect().size.x - (get_node("ground/ground").texture.get_size().x*5.33333))
-		position.y = (get_viewport_rect().size.y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
+func resize(x, y):
+	if not vprect.x == x or not vprect.y == y:
+		position.x = (x - (get_node("ground/ground").texture.get_size().x*5.33333))
+		position.y = (y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
 		$score.set_global_position(Vector2(70, 70))
 	vprect = get_viewport_rect().size
 
