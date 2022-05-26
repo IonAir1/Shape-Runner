@@ -1,6 +1,6 @@
 extends Node
 
-var version = "1.8.6" #Game Version
+var version = "1.9.3" #Game Version
 var state = 0 #current game playing
 var switch_to_b = false #signal to switch to game b
 var switch_to_c = false #signal to switch to game c
@@ -22,7 +22,7 @@ var guide = true #show guide
 var sounds = true #sounds
 var music = true #music
 var graphics = true #fancy graphics
-var death_sound = false #sound the death sound
+var death_fade = false #sound the death fade
 
 
 func load_settings():
@@ -69,7 +69,7 @@ func save_score():
 	file.close()
 
 func _process(delta):
-	if mutate:
+	if mutate: #signal all about mutation
 		mutate = false
 		state += 1
 		if state == 6:
@@ -86,5 +86,5 @@ func _process(delta):
 			switch_to_c = true
 		if state == 0:
 			switch_to_a = true
-	if state > 6:
+	if state > 6: #reset mutation cycle
 		state = 0

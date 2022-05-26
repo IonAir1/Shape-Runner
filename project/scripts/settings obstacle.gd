@@ -7,7 +7,7 @@ var mutate = true
 
 func _physics_process(delta):
 	
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		modulate = Color(1.5, 3, 1.8, 1)
 	else:
 		modulate = Color(1,1,1,1)

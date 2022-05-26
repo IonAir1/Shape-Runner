@@ -6,14 +6,13 @@ var friction = 0.2 #running friction
 var acceleration = 0.25 #running acceleration
 var velocity = Vector2.ZERO #velocity
 var vertical_speed = 800 #vertical player speed
-var y_destination = 360
+var y_destination = 360 #target position
 
 func _ready():
 	position.y = y_destination
-	#print(get_tree().get_current_scene().get_name())
 
 func _physics_process(delta):
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		modulate = Color(1.2, 1.2, 1.2, 1)
 		$Flying.emitting = true
 		$Flying.visible = true
@@ -21,7 +20,9 @@ func _physics_process(delta):
 		modulate = Color(1,1,1,1)
 		$Flying.emitting = false
 		$Flying.visible = false
-	var dir = 0
+
+
+	var dir = 0 #movement
 	if (y_destination - 30) > position.y:
 		dir += 1
 	if (y_destination + 30) < position.y:

@@ -2,7 +2,7 @@ extends Node2D
 
 var pause = preload("res://assets/pause.png")
 var play = preload("res://assets/play.png")
-var disable = false
+var disable = false #disable toggle
 var death_delay = false
 
 func _ready():
@@ -13,15 +13,19 @@ func _ready():
 	death_delay = true
 
 func _process(delta):
-	get_parent().resize(get_viewport_rect().size.x, get_viewport_rect().size.y)
-	$text.global_position.x = get_viewport_rect().size.x / 2
-	if Input.is_action_just_released("pause"):
+	get_parent().resize(get_viewport_rect().size.x, get_viewport_rect().size.y) #resize game based on screen size
+	$text.global_position.x = get_viewport_rect().size.x / 2 #reposition pause text based on screen size
+
+
+	if Input.is_action_just_released("pause"): #keyboard pause
 		toggle()
-	if Global.end and death_delay:
+
+
+	if Global.end and death_delay: #if game end
 		Global.end = false
 		disable = true
 		get_tree().paused = true
-		Global.death_sound = true
+		Global.death_fade = true
 		get_parent().get_node("obstacle").position = Vector2(-1000,-1000)
 		get_parent().get_node("Player/circle").visible = false
 		Audio.get_node("explosion").play()
@@ -46,7 +50,7 @@ func _process(delta):
 		get_tree().change_scene("res://scenes/Main Menu.tscn")
 
 
-func toggle():
+func toggle(): #toggle pause
 	if !disable:
 		if get_tree().paused:
 			$text/Number.visible = true
@@ -65,11 +69,11 @@ func toggle():
 			$text/Number.visible = false
 			$TouchScreenButton.normal = play
 
-func _on_TouchScreenButton_pressed():
+func _on_TouchScreenButton_pressed(): #pause button
 	Audio.get_node("click").play()
 	toggle()
 
-func fade(number):
+func fade(number): #fade, scene transition
 	var a = (10 - number) * 0.1
 	get_parent().get_node("fade").modulate = Color(0,0,0, a)
 	yield(get_tree().create_timer(0.02),"timeout")

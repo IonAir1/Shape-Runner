@@ -50,20 +50,20 @@ color_ramp = SubResource( 4 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 255.19, 45 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=9]
 size = 24
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=11]
 size = 24
 extra_spacing_bottom = 20
 font_data = ExtResource( 9 )
 
-[sub_resource type="Environment" id=11]
+[sub_resource type="Environment" id=12]
 background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
@@ -173,7 +173,7 @@ margin_left = 980.0
 margin_top = 680.0
 margin_right = 1260.0
 margin_bottom = 709.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 9 )
 text = "Version 0.0.0"
 align = 2
 valign = 2
@@ -231,7 +231,7 @@ margin_left = 188.0
 margin_top = 1.0
 margin_right = 668.0
 margin_bottom = 129.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 text = "credits"
 valign = 1
 
@@ -257,7 +257,7 @@ __meta__ = {
 [node name="madeby" type="LinkButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 754.0
 margin_bottom = 49.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
@@ -376,7 +376,7 @@ __meta__ = {
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = SubResource( 12 )
 [connection signal="area_entered" from="background/middle" to="background/Player" method="_on_middle_area_entered"]
 [connection signal="area_entered" from="background/top" to="background/Player" method="_on_top_area_entered"]
 [connection signal="area_entered" from="background/bottom" to="background/Player" method="_on_bottom_area_entered"]

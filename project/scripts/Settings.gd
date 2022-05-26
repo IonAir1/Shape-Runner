@@ -5,10 +5,11 @@ var darkened = Color(0.5,0.5,0.5,1)
 
 
 func _ready():
+	$background/version.text = "Version " + Global.version #display version number
 	get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/2nd Set/Graphics").modulate = pressed
 
 func _process(delta):
-	if Global.sounds:
+	if Global.sounds: #button visuals
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Sounds").modulate = pressed
 	else:
 		get_node("MarginContainer/VBoxContainer/CenterContainer/Lower/1st Set/Sounds").modulate = darkened

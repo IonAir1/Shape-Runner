@@ -7,19 +7,20 @@ var velocity = Vector2.ZERO #velocity
 var top_detect = false
 var middle_detect = false
 var bottom_detect = false
-var dir = 0
+var dir = 0 #chosen move
 
 func _physics_process(delta):
 	
-	if Global.graphics:
+	if Global.graphics: #fancy graphivs
 		$Swimming.emitting = true
 		$sprite.self_modulate = Color(1.8, 3.6, 2.16, 1)
 		modulate = Color(1,1,1,1)
 	else:
 		modulate = Color(1,1,1,1)
 		self_modulate = Color(1,1,1,1)
-	
-	if top_detect:
+
+
+	if top_detect: #detect obstacle
 		dir = -1
 	elif bottom_detect:
 		dir = 1
@@ -29,7 +30,7 @@ func _physics_process(delta):
 			dir = -1
 
 
-	jump_speed = -600
+	jump_speed = -600 #moveent
 	gravity = 950
 	if position.y > 380 and position.y < 420 and not swim_jump:
 		position.y = 400
@@ -55,6 +56,7 @@ func _physics_process(delta):
 			swimwait()
 			Audio.get_node("dive").play()
 	velocity = move_and_slide(velocity, Vector2.UP)
+
 
 func swimwait():#timer for game C, jumping
 	yield(get_tree().create_timer(0.5), "timeout")

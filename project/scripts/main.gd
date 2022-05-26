@@ -11,16 +11,16 @@ var bounce_script = preload("res://scripts/bouncing obstacle.gd")
 var water_rise = 0.1 #speed of water rising
 var velocity = 0 #water velocity
 var change = 0.3 #speed of transition
-var vprect = Vector2()
-var waterlower
-var waterrepos = false
-var wait = 1
-var mutate = Vector2(5, 12) #5 12
-var startingstate = 0
-var twobuttons = [1, 2, 3, 6]
+var vprect = Vector2() #screen size last frame
+var waterlower #water timer
+var waterrepos = false #reposition water
+var wait = 1 #obstacle spawn waiting time
+var mutate = Vector2(5, 12) #5 12; mutate timing
+var startingstate = 0 #starting state
+var twobuttons = [1, 2, 3, 6] #states that requires two buttons for controls
 
 func _process(delta):
-	if Global.guide:
+	if Global.guide: #button guide
 		if twobuttons.find(Global.state) != -1:
 			get_node("buttons/1").visible = false
 			get_node("buttons/2").visible = true
@@ -28,7 +28,7 @@ func _process(delta):
 			get_node("buttons/1").visible = true
 			get_node("buttons/2").visible = false
 
-func resize(x, y):
+func resize(x, y): #reposition based on screen size
 	if not vprect.x == x or not vprect.y == y:
 		position.x = (x - (get_node("ground/ground").texture.get_size().x*5.33333))
 		position.y = (y / 2) - (get_node("ground/ground").texture.get_size().y / 2) - 240
@@ -41,7 +41,7 @@ func obstacle_spawn(): #spawns obstacles
 		var e = running_obstacle.instance()
 		e.position = Vector2(1330, 692)
 		e.set_script(running_script)
-		var a = Vector2(rand_range(0.2, 0.6), rand_range(0.2, 0.6))
+		var a = Vector2(rand_range(0.2, 0.6), rand_range(0.2, 0.6)) #random size
 		e.size = a.normalized()
 		e.game = 1
 		e.gravitydir = -1
@@ -89,7 +89,7 @@ func obstacle_spawn(): #spawns obstacles
 		wait = rand_range(0.2, 0.4)
 
 
-	if Global.state == 4:
+	if Global.state == 4: #spawns game E obstacle
 		var e = bounce_obstacle.instance()
 		var height = rand_range(300, 600)
 		e.position = Vector2(1330, height)
@@ -102,7 +102,7 @@ func obstacle_spawn(): #spawns obstacles
 		wait = rand_range(1, 2.8)
 
 
-	if Global.state == 5:
+	if Global.state == 5: #spawns game F obstacle
 		var e = running_obstacle.instance()
 		var gravitydir = (randi()%3) - 1
 		if gravitydir != 0:
@@ -122,7 +122,7 @@ func obstacle_spawn(): #spawns obstacles
 
 
 
-	if Global.state == 6:
+	if Global.state == 6: #spawns game G obstacle
 		var e = running_obstacle.instance()
 		e.position = Vector2(1400, rand_range(0, 720))
 		e.set_script(flying_script)
@@ -140,10 +140,10 @@ func _ready():
 	randomize()
 	Global.score = 0
 	Global.state = startingstate
-	if !Global.guide:
+	if !Global.guide: #hide button guide
 		$buttons.visible = false
 		$buttons.visible = false
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		$WorldEnvironment.environment.glow_enabled = true
 		$water.z_index = 0
 	else:
@@ -205,7 +205,7 @@ func _physics_process(delta):
 		$water.position.y = 1600
 	
 
-	if velocity != 0:
+	if velocity != 0: #reposition water
 		get_node("water").position -= Vector2(0, velocity)
 	elif Global.state == 4 and waterrepos:
 		if  waterlower.time_left <= 0:
@@ -217,12 +217,11 @@ func _physics_process(delta):
 
 
 
-func _on_touch_pressed():
+func _on_touch_pressed(): #touchscreen controls
 		if get_global_mouse_position().y < (get_viewport_rect().size.y / 2):
 			$Player.touch = 1
 		else:
 			$Player.touch = -1
-
 
 func _on_touch_released():
 	$Player.touch = 0

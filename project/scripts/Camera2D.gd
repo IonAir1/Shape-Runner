@@ -1,5 +1,6 @@
 extends Camera2D
 
+#code from https://pastebin.com/LY52qRE5, https://godotengine.org/qa/5846/how-do-you-make-the-camera-shake
 var _duration = 0.0
 var _period_in_ms = 0.0
 var _amplitude = 0.0

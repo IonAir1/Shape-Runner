@@ -1,12 +1,12 @@
 extends Control
 
 func _ready():
-	$background/version.text = "Version " + Global.version
+	$background/version.text = "Version " + Global.version #display version number
 
-func _on_Exit_pressed():
+func _on_Exit_pressed(): #exit button
 	Audio.get_node("click").play()
 	get_tree().change_scene("res://scenes/Main Menu.tscn")
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		$WorldEnvironment.environment.glow_enabled = true
 	else:
 		$WorldEnvironment.environment.glow_enabled = false

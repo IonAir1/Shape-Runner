@@ -10,8 +10,8 @@ var swim_jump = false #timer for disabling jumping when game C
 var run = preload("res://assets/runner.png")
 var fly = preload("res://assets/flyer.png")
 var swim = preload("res://assets/swimmer.png")
-var touch = 0
-var gravitydir = -1
+var touch = 0 #touch control
+var gravitydir = -1 #gravity; 1 up and -1 down
 
 func _ready():
 	get_node("circle").scale = Vector2.ZERO
@@ -23,7 +23,7 @@ func swimwait():#timer for game C, jumping
 
 func _physics_process(delta):
 	
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		if Global.state == 2:
 			$sprite.self_modulate = Color(1.5, 3, 2.4, 1)
 			modulate = Color(1, 1, 1, 1)
@@ -31,7 +31,7 @@ func _physics_process(delta):
 			$sprite.self_modulate = Color(1, 1, 1, 1)
 			modulate = Color(1.2, 1.2, 1.2, 1)
 	
-	if $sprite.texture == run:
+	if $sprite.texture == run: #set collision shape
 		$square.set_deferred("disabled", false)
 		$Area2D/square.set_deferred("disabled", false)
 		$triangle.set_deferred("disabled", true)
@@ -54,7 +54,7 @@ func _physics_process(delta):
 		$Area2D/circle.set_deferred("disabled", false)
 	
 	
-	var ceiling_height = get_parent().get_node("ground/ceiling/ceiling_pos").global_position.y + 25
+	var ceiling_height = get_parent().get_node("ground/ceiling/ceiling_pos").global_position.y + 25 #ceiling
 	if global_position.y <= ceiling_height:
 		global_position.y = ceiling_height
 

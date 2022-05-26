@@ -7,14 +7,14 @@ var flying_obstacle = preload("res://scenes/flying obstacle.tscn")
 var vprect = Vector2()
 
 
-func _process(delta):
+func _process(delta): #reposition background based on screen size
 	if not vprect.x == get_viewport_rect().size.x or not vprect.y == get_viewport_rect().size.y:
 		position.x = (get_viewport_rect().size.x - ($ground/ground.texture.get_size().x*5.33333))
 		position.y = (get_viewport_rect().size.y / 2) - ($ground/ground.texture.get_size().y / 2) - 240
 	vprect = get_viewport_rect().size
 
 func _ready():
-	if Global.graphics:
+	if Global.graphics: #put water behind the objects when graphics is on so glow is not affected
 		$water.z_index = 0
 	else:
 		$water.z_index = 10
@@ -23,7 +23,7 @@ func _ready():
 
 func spawn():
 	var e = swim_obstacle.instance()
-	var a = randi()%3
+	var a = randi()%3 #picks a random position (top, middle, or bottom)
 	if a == 0:
 		e.position = Vector2(1600,320)
 	if a == 1:

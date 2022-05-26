@@ -10,7 +10,7 @@ var jump = false
 
 
 func _physics_process(delta):
-	if Global.graphics:
+	if Global.graphics: #fancy graphics
 		modulate = Color(1.2, 1.2, 1.2, 1)
 		if is_on_floor():
 			$Running.emitting = true
@@ -18,7 +18,9 @@ func _physics_process(delta):
 			$Running.emitting = false
 	else:
 		modulate = Color(1, 1, 1, 1)
-	jump_speed = -1300 #jump when obstacle detected
+
+
+	jump_speed = -1300 #movement
 	gravity = 4000
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -29,5 +31,5 @@ func _physics_process(delta):
 		Audio.get_node("jump").play()
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(area):  #jump when obstacle detected
 	jump = true
