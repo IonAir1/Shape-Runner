@@ -1,7 +1,7 @@
 Shape Runner
 
-Itch Page: 
-Jam Version: https://ironwood.itch.io/shape-runner
+Itch Page: https://ironwood.itch.io/shape-runner
+Jam Version: https://ironwood.itch.io/shape-runner-jam
 
 Made by IronWood
 Itch page: https://ironwood.itch.io
