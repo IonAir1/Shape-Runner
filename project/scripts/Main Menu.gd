@@ -1,11 +1,6 @@
 extends Control
 
 func _ready():
-	if Global.first: #load saves
-		Global.load_score()
-		Global.load_settings()
-		Global.first = false
-
 	if Global.death_fade: #death fade scene transition
 		Global.death_fade = false
 		$fade.modulate = Color(0,0,0,1)

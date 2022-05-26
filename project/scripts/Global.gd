@@ -1,6 +1,6 @@
 extends Node
 
-var version = "1.9.3" #Game Version
+var version = "1.9.4" #Game Version
 var state = 0 #current game playing
 var switch_to_b = false #signal to switch to game b
 var switch_to_c = false #signal to switch to game c
@@ -12,7 +12,6 @@ var switch_to_g = false #signal to switch to game g
 var mutate = false #is mutating
 var score = 0 #score
 var bestscore = 0 #highscore
-var first = true #first load
 var new = false # new player shape
 var dev = false #is testing
 var end = false #game end

@@ -1,2 +1,2 @@
-*.apk
-exports
+test_exports
+export_presets.cfg
